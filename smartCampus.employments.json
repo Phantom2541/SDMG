@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "6575628a5d1ec6e9ae74ba0f"
+  },
+  "user": {
+    "$oid": "6575620571eeb21893ab95bf"
+  },
+  "status": "approved",
+  "access": "ADMINISTRATOR"
+},
+{
+  "_id": {
+    "$oid": "65757e0f0f11d7046355ae9e"
+  },
+  "user": {
+    "$oid": "65757e0f0f11d7046355ae9c"
+  },
+  "position": "PRINCIPAL",
+  "access": "OTHERS",
+  "isPublished": false,
+  "status": "pending",
+  "remarks": "",
+  "createdAt": {
+    "$date": "2023-12-10T08:59:59.692Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-10T08:59:59.692Z"
+  },
+  "__v": 0
+}]
