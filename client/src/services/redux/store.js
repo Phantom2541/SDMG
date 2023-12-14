@@ -10,9 +10,11 @@ import sections from "./slices/resources/sections";
 import employments from "./slices/admissions/employments";
 import courses from "./slices/resources/courses";
 import enrollments from "./slices/admissions/enrollments";
+import students from "./slices/resources/students";
 
 const store = configureStore({
   reducer: {
+    students,
     employments,
     enrollments,
     auth,
