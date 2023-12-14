@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Elementary",
+    "abbreviation": "ELEM",
+    "key": "grade",
+    "gradeLevels": [1, 2, 3, 4, 5, 6]
+  },
+  {
+    "name": "Junior High School",
+    "abbreviation": "JHS",
+    "key": "junior",
+    "gradeLevels": [7, 8, 9, 10]
+  },
+  {
+    "name": "Senior High School",
+    "abbreviation": "SHS",
+    "key": "senior",
+    "gradeLevels": [11, 12]
+  },
+  {
+    "name": "College",
+    "abbreviation": "COLLEGE",
+    "key": "college",
+    "gradeLevels": [13, 14, 15, 16, 17]
+  }
+]

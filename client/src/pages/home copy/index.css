@@ -1,0 +1,24 @@
+#landing {
+  background-color: #fff;
+}
+
+#landing .navbar.scrolling-navbar.top-nav-collapse {
+  background-color: #4285f4 !important;
+}
+
+#landing footer.page-footer {
+  background-color: #4285f4;
+}
+
+#landing #home .view {
+  height: 80vh !important;
+  transition: all 1s;
+}
+
+/* #landing .rgba-gradient {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(83, 125, 210, 0.4),
+    rgba(178, 30, 123, 0.4) 100%
+  );
+} */

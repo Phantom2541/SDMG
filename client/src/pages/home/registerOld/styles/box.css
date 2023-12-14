@@ -1,0 +1,127 @@
+.register-container {
+  position: relative;
+  width: auto;
+  height: 500px;
+  overflow-y: hidden;
+  background-color: #4d1414;
+}
+
+.register-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    #4d1414,
+    #f4bb00,
+    #f4bb00,
+    #f4bb00,
+    #4d1414
+  );
+  animation: top-bottom 7s ease infinite;
+  z-index: 0;
+}
+
+@keyframes top-bottom {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Move hover effect to a separate class */
+.box-border,
+.register-card,
+.register-card2 {
+  transition: background-color 0.1s ease;
+}
+
+/* Apply hover effect to .box-border */
+.box-border:hover {
+  background-color: #f4bb00;
+}
+
+/* Set pointer-events to none for .register-card */
+.register-card {
+  pointer-events: none;
+}
+
+/* Reset background color for .box-border when .register-card is hovered */
+.register-card:hover + .box-border {
+  background-color: #660710;
+}
+
+/* Reset background color for .box-border when .register-card2 is hovered */
+.register-card2:hover + .box-border {
+  background-color: #660710;
+}
+
+/* Styling for .box-border */
+.box-border {
+  background-color: #660710;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Transition for .box-border when not hovered */
+.box-border:not(:hover) {
+  transition: background-color 1s ease;
+  background-color: #660710;
+}
+
+/* Styling for .register-card */
+.register-card {
+  position: absolute;
+  z-index: 2;
+  width: 75vw;
+  height: 35vh;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+.register-card-head {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-left: 30px;
+  color: white;
+  font-weight: bold;
+}
+.register-card-body {
+  font-size: 19px;
+  margin-top: 15px;
+  margin-left: 30px;
+  width: 31vw;
+  color: white;
+}
+
+/* Styling for .register-card2 */
+.register-card2 {
+  position: absolute;
+  z-index: 2;
+  width: 35vw;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  top: 50%;
+  left: 67%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+
+.register-card2-head {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.register-card2-body {
+  margin-top: 10px;
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 9,
+    "track": "ABM",
+    "name": "Accountancy, Business and Management",
+    "abbreviation": "ABM"
+  },
+  {
+    "id": 10,
+    "track": "STEM",
+    "name": "Science, Technology Engineering and Mathematics",
+    "abbreviation": "STEM"
+  },
+  {
+    "id": 11,
+    "track": "Academics track",
+    "name": "Humanities and Social Science",
+    "abbreviation": "HUMSS"
+  },
+  {
+    "id": 12,
+    "track": "GAS",
+    "name": "General Academic Strand",
+    "abbreviation": "GAS"
+  },
+  {
+    "id": 13,
+    "track": "AD",
+    "name": "Arts and Design",
+    "abbreviation": "AD"
+  },
+  {
+    "id": 14,
+    "track": "Technical-Vocational and Livelihood (TVL)",
+    "name": "Agirultural-Fisher Arts",
+    "abbreviation": "AFA"
+  },
+  {
+    "id": 15,
+    "track": "Technical-Vocational and Livelihood (TVL)",
+    "name": "Shielded Metal Arc Welding",
+    "abbreviation": "SMAW"
+  },
+  {
+    "id": 16,
+    "track": "Technical-Vocational and Livelihood (TVL)",
+    "name": "Industrial Arts",
+    "abbreviation": "IA"
+  },
+  {
+    "id": 17,
+    "track": "Technical-Vocational and Livelihood (TVL)",
+    "name": "Information and Communications Technology",
+    "abbreviation": "ICT"
+  },
+  {
+    "id": 18,
+    "track": "Technical-Vocational and Livelihood (TVL)",
+    "name": "Home Economics Cookery, Bread & Pastries, Food and Beverage",
+    "abbreviation": "HE"
+  }
+]

@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "65754ce8475d729b64f0a30c"
+  },
+  "email": "benedictearle@gmail.com",
+  "password": "$2a$10$0miJCiwA4w7FgGL0TboMLOIgWgMDaOLLDpDH9J7FjCmpH6pmq4wry",
+  "fullName": {
+    "fname": "BENEDICT EARLE GABRIEL",
+    "mname": "ROMERO",
+    "lname": "PAJARILLAGA",
+    "suffix": ""
+  },
+  "address": {
+    "isSame": true,
+    "current": {
+      "street": "Purok 4",
+      "barangay": "Mabini Extension",
+      "city": "CABANATUAN CITY",
+      "province": "NUEVA ECIJA",
+      "region": "REGION III (CENTRAL LUZON)",
+      "zip": "3100"
+    },
+    "permanent": {
+      "street": "Purok 4",
+      "barangay": "Mabini Extension",
+      "city": "CABANATUAN CITY",
+      "province": "NUEVA ECIJA",
+      "region": "REGION III (CENTRAL LUZON)",
+      "zip": "3100"
+    }
+  },
+  "guardians": {
+    "father": {
+      "fname": "TOMAS",
+      "lname": "PAJARILLAGA",
+      "mname": "BAUTISTA",
+      "suffix": "JR",
+      "mobile": "9511231231"
+    },
+    "mother": {
+      "fname": "DEBRALENE GAY",
+      "lname": "PAJARILLAGA",
+      "mname": "ROMERO",
+      "mobile": "9510777465"
+    }
+  },
+  "lrn": "N/A",
+  "dob": "2000-09-08T05:28:00.000Z",
+  "pob": "Cabanatuan City",
+  "mobile": "9510706841",
+  "isMale": true,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2023-12-10T05:30:16.878Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-10T05:30:16.878Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6575620571eeb21893ab95bf"
+  },
+  "email": "admin@gmail.com",
+  "password": "$2a$10$/P/UrmBgrX9HIlqZIuZdHOM3m.Zvp20GSA7ylrtmmdLWdHmIODqO2",
+  "address": {
+    "isSame": true
+  },
+  "isMale": false,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2023-12-10T07:00:21.936Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-10T07:00:21.936Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65757e0f0f11d7046355ae9c"
+  },
+  "email": "principal@gmail.com",
+  "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
+  "fullName": {
+    "fname": "KIMBERLY",
+    "mname": "PENAFLOR",
+    "lname": "SARMIENTO",
+    "suffix": ""
+  },
+  "address": {
+    "isSame": true,
+    "current": {
+      "street": "",
+      "city": "CABANATUAN CITY",
+      "province": "NUEVA ECIJA",
+      "region": "REGION III (CENTRAL LUZON)",
+      "zip": ""
+    },
+    "permanent": {
+      "street": "",
+      "city": "CABANATUAN CITY",
+      "province": "NUEVA ECIJA",
+      "region": "REGION III (CENTRAL LUZON)",
+      "zip": ""
+    }
+  },
+  "dob": "1999-10-12T08:14:00.000Z",
+  "pob": "Bertese, Quezon City",
+  "mobile": "9510707654",
+  "isMale": false,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2023-12-10T08:59:59.578Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-10T08:59:59.578Z"
+  },
+  "__v": 0
+}]

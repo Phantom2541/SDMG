@@ -1,0 +1,21 @@
+.file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+}
+
+.file-row {
+  display: flex;
+  margin-bottom: 1px;
+}
+
+.file-column {
+  flex: 1;
+  margin: 1px;
+}
+
+.file-img {
+  max-width: 100%;
+  height: 100%;
+}

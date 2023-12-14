@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Special Program in Sports",
+    "abbreviation": "SPS",
+    "track": ""
+  },
+  {
+    "id": 2,
+    "name": "Science Technology Engineering",
+    "abbreviation": "STE",
+    "track": ""
+  },
+  {
+    "id": 3,
+    "name": "Special Program in Arts",
+    "abbreviation": "SPA",
+    "track": ""
+  },
+  {
+    "id": 4,
+    "name": "Special Program in Information and Communication Technology",
+    "abbreviation": "SPICT",
+    "track": ""
+  },
+  {
+    "id": 5,
+    "name": "Information and Communication Technology",
+    "abbreviation": "ICT",
+    "track": ""
+  },
+  {
+    "id": 6,
+    "name": "Electrical Installation and Maintenance",
+    "abbreviation": "EIM",
+    "track": ""
+  },
+  {
+    "id": 7,
+    "name": "Shielded Metal Arc Welding",
+    "abbreviation": "SMAW",
+    "track": ""
+  },
+  {
+    "id": 8,
+    "name": "Beauty Care",
+    "abbreviation": "BC",
+    "track": ""
+  }
+]

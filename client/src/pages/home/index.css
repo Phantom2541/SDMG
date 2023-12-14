@@ -1,0 +1,17 @@
+#landing {
+  background-color: #fff;
+}
+
+#landing .navbar.scrolling-navbar.top-nav-collapse {
+  background-color: #0081c9 !important;
+}
+
+#landing footer.page-footer {
+  background-color: #0081c9;
+}
+
+#landing #banner .view {
+  height: 100vh !important;
+  min-width: 768px !important;
+  transition: all 1s;
+}

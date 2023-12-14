@@ -1,0 +1,180 @@
+.feature-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  position: relative;
+}
+
+@media screen and (max-width: 1400px) {
+  .feature-container {
+    flex-wrap: wrap;
+  }
+
+  .feature-card {
+    width: 50%; /* Adjust card width for two cards in a row */
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .feature-container {
+    flex-wrap: wrap; /* Allow cards to wrap onto the next line */
+    justify-content: space-between; /* Distribute cards evenly on the row */
+  }
+
+  .feature-card {
+    width: 50%; /* Adjust card width for two cards in a row */
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .feature-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-card {
+    width: 50%; /* Adjust card width for two cards in a row */
+    margin-bottom: 10px;
+  }
+}
+
+.feature-card {
+  height: 330px;
+  width: 280px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
+  background-color: transparent;
+  transition: 1s;
+}
+
+.feature-card::before,
+.feature-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease;
+}
+
+.feature-card::before {
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to bottom right,
+    #dfd00a,
+    #7f0404 70%
+  ); /* Top-left section color */
+  transform: translateY(-100%) translateX(-100%);
+}
+
+.feature-card::after {
+  bottom: 0;
+  right: 0;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to bottom right,
+    #dfd00a,
+    #7f0404 70%
+  ); /* Bottom-right section color */
+  transform: translateY(100%) translateX(100%);
+}
+
+.feature-card:hover::before {
+  transform: translateY(0) translateX(0);
+}
+.feature-card:hover::after {
+  transform: translateY(0) translateX(0);
+}
+
+.feature-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  top: 30px;
+  margin: auto;
+}
+
+.feature-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  transition: transform 1s ease; /* Add transition for smooth rotation */
+}
+
+.feature-card:hover .feature-box {
+  transform: rotate(225deg); /* Rotate the box on hover */
+  /* border-color: white; */
+}
+
+.feature-icon {
+  z-index: 2;
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+}
+/* .feature-card:hover .feature-icon {
+  color: white;
+} */
+
+.feature-title {
+  position: absolute;
+  top: 150px;
+  left: 50%; /* Position the left edge at the center */
+  transform: translateX(-50%); /* Move the text back by half of its width */
+  z-index: 2;
+  font-family: Serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  transition: 1s;
+  text-align: center; /* Center-align the text content */
+  width: 280px; /* Optional: Set a width if desired */
+}
+
+/* .feature-card:hover .feature-title {
+  color: white;
+} */
+
+.feature-content {
+  position: absolute;
+  top: 190px;
+  left: 0px;
+  z-index: 2;
+  color: white;
+  font-family: serif;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: 0.5s;
+  /* display: none; */
+}
+
+/* .feature-card:hover .feature-content {
+  color: white;
+} */
+
+.feature-head {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}

@@ -1,0 +1,47 @@
+users
+-fullName       | object
+-dob            | string required
+-mobile         | string required
+-email          | string unique required
+-password       | string required
+-address        | object { permanent, current }
+
+requirements
+-title          | string required
+-department     | enum [ grade, junior high, senior high, college ]
+
+(Files: subjects/batch)
+subjects
+-title          | string unique required
+
+sections
+-subjects       | array of objectId
+-department     | string required
+
+employments
+-title          | string required
+-user           | objectId required
+-isRegular      | boolean default: false
+-access         | enum [ principal, vice, head, master, teacher, registrar, guidance, others ]
+-salary         | number required
+
+(Files: enrollments/email)
+enrollments
+-user           | objectId required
+-gradeLvl       | number min: 1; max: 12; required
+-status         | enum [ pending, approved, rejected ]
+-remarks        | string
+
+summons
+-user           | objectId required
+
+attendances
+-user           | objectId required
+-in             | string date required
+-out            | string date
+
+salaries
+-user           | objectId required
+-total          | number required
+-hours          | number required
+-rate           | number required

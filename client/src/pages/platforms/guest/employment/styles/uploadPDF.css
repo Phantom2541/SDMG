@@ -1,0 +1,6 @@
+.pdf-container {
+  width: 300px;
+  height: auto;
+  overflow: hidden;
+  overflow-y: hidden;
+}
