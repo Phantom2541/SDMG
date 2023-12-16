@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MDBModal, MDBModalBody, MDBIcon, MDBModalHeader } from "mdbreact";
-import EmploymentForm from "../../../guest/employment/form";
+// import EmploymentForm from "../../../guest/employment/form";
 import Swal from "sweetalert2";
 import { Departments, Roles } from "../../../../../services/fakeDb";
 import { useDispatch, useSelector } from "react-redux";
@@ -126,14 +126,14 @@ export default function Modal({ show, toggle, selected }) {
         Approve an Employment
       </MDBModalHeader>
       <MDBModalBody className="mb-0">
-        <EmploymentForm
+        {/* <EmploymentForm
           user={{ ...selected.user, dob: new Date(selected?.user?.dob) }}
           employment={form}
           isGuest={false}
           setEmployment={setForm}
           handleSubmit={handleSubmit}
           handleReject={handleReject}
-        />
+        /> */}
       </MDBModalBody>
     </MDBModal>
   );

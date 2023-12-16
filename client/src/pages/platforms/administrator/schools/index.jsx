@@ -13,12 +13,15 @@ import {
   BROWSE,
   RESET,
 } from "../../../../services/redux/slices/resources/schools";
-// import { Modal } from "./modal";
+import Modal from "./modal";
 
 export default function Schools({}) {
-  const [employees, setEmployees] = useState([]),
+  const [schools, setSchools] = useState([]),
+  [showModal, setShowModal] = useState(false),
+    [willCreate, setWillCreate] = useState(true),
     { token } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ schools }) => schools),
+    
     dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,8 +31,12 @@ export default function Schools({}) {
   }, [dispatch, token]);
 
   useEffect(() => {
-    setEmployees(collections);
+    setSchools(collections);
   }, [collections]);
+
+  const toggleModal = () => setShowModal(!showModal);
+
+
 
   return (
     <>
@@ -67,11 +74,9 @@ export default function Schools({}) {
                 <MDBIcon icon="search" />
               </MDBBtn>
               <MDBBtn
-                //   onClick={() => {
-                //     if (!searchKey) return;
-                //     setSearchKey("");
-                //     document.getElementById("faculty-inline-search").reset();
-                //   }}
+                  onClick={
+                     alert('sa,p')
+                  }
                 type="button"
                 size="sm"
                 color="success"
@@ -101,15 +106,15 @@ export default function Schools({}) {
               </tr>
             </thead>
             <tbody>
-              {!employees?.length && (
+              {!schools?.length && (
                 <tr>
                   <td className="text-center" colSpan="5">
                     No recent records.
                   </td>
                 </tr>
               )}
-              {employees?.map((employee) => {
-                const { logo, name, abbreviation, address, _id } = employee;
+              {schools?.map((school) => {
+                const { logo, name, abbreviation, address, _id } = school;
                 return (
                   <tr key={_id}>
                     <td>{logo}</td>
@@ -124,7 +129,7 @@ export default function Schools({}) {
                           size="sm"
                           rounded
                           //   onClick={() => {
-                          //     setSelected(employee);
+                          //     setSelected(school);
                           //     setShow(true);
                           //   }}
                         >
@@ -148,6 +153,7 @@ export default function Schools({}) {
           </MDBTable>
         </MDBCardBody>
       </MDBCard>
+      <Modal show={showModal} toggle={toggleModal} willCreate={willCreate} />
     </>
   );
 }

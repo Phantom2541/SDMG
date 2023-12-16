@@ -1,0 +1,12 @@
+[{
+    "id": "12345-test", 
+    "name": "Mataas na Kahoy National High School",
+    "abbreviation": "SMDG",
+    "address": {
+      "region": "REGION III (CENTRAL LUZON)",
+      "province": "NUEVA ECIJA",
+      "city": "GENERAL MAMETO NATIVIDAD",
+      "barangay": "SUMACAB SUR",
+      "zip": 3100
+    }
+  }]
