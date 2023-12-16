@@ -3,6 +3,9 @@
     "_id": {
       "$oid": "65754ce8475d729b64f0a30c"
     },
+    "school": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
     "email": "BenedictEarle@gmail.com",
     "password": "$2a$10$0miJCiwA4w7FgGL0TboMLOIgWgMDaOLLDpDH9J7FjCmpH6pmq4wry",
     "fullName": {
@@ -80,7 +83,7 @@
     "_id": {
       "$oid": "65757e0f0f11d7046355ae9c"
     },
-    "email": "principal@gmail.com",
+    "email": "coordinator@gmail.com",
     "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
     "fullName": {
       "fname": "KIMBERLY",

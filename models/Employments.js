@@ -16,17 +16,7 @@ const modelSchema = new mongoose.Schema(
     access: {
       type: String,
       enum: {
-        values: [
-          "PRINCIPAL",
-          "VICE",
-          "HEAD",
-          "MASTER",
-          "TEACHER",
-          "REGISTRAR",
-          "CASHIER",
-          "GUIDANCE",
-          "OTHERS",
-        ],
+        values: ["COORDINATOR", "TEACHER"],
         message: "Please choose a valid type from the predefined options.",
       },
       default: "OTHERS",

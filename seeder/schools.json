@@ -1,5 +1,9 @@
-[{
-    "id": "12345-test", 
+[
+  {
+    "_id": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "id": "12345-test",
     "name": "Mataas na Kahoy National High School",
     "abbreviation": "SMDG",
     "address": {
@@ -9,4 +13,5 @@
       "barangay": "SUMACAB SUR",
       "zip": 3100
     }
-  }]
+  }
+]

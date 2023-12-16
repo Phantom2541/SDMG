@@ -1,5 +1,4 @@
 import Dashboard from "./dashboard";
-import Enrollment from "./enrollment";
 
 const access = [
   {
@@ -7,12 +6,6 @@ const access = [
     icon: "tachometer-alt",
     path: "/dashboard",
     component: Dashboard,
-  },
-  {
-    name: "Enrollment",
-    icon: "th-list",
-    path: "/enrollment",
-    component: Enrollment,
   },
 ];
 

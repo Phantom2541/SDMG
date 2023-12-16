@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const modelSchema = new mongoose.Schema(
   {
+    coordinator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+    },
     id: {
       type: String,
       required: true,
@@ -12,6 +16,9 @@ const modelSchema = new mongoose.Schema(
     },
     abbreviation: {
       type: String,
+    },
+    category: {
+      type: Array,
     },
     logo: {
       type: String,

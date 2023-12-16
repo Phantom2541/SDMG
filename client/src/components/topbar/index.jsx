@@ -40,7 +40,7 @@ class TopNavigation extends Component {
   }
 
   handleRole(role) {
-    const direct = ["PRINCIPAL", "STUDENT", "GUEST", "ADMINISTRATOR"];
+    const direct = ["COORDINATOR", "STUDENT", "ADMINISTRATOR"];
 
     if (direct.includes(role)) return role;
 

@@ -1,50 +1,16 @@
 Admin
--create principal account
+-create coordinator account
 
-Principal (one)
+Coordinator
 -manage employees
 -manage subjects
 -manage department heads
 
-Vice Principal (one)
--manage subjects
--manage department heads
-
-Secretary (many)
--add employees
-
-Registrar (many)
--manage enrollments
--manage payments
-
-elem, jhs, shs
-
-Dean (one per department)
--manage students
--manage teachers
-
-Master Teacher (one per department)
--manage teachers
--manage students
-
 Teacher (many per department)
 -manage students per section
 
-Guidance Counselor (many)
--create summon
-
-Others (Security Guard, Janitor, Librarian)
--DTR
-
 base roles
 -administrator
--principal
--vicePrincipal
--secretary
--registrar
--head
--master
+-coordinator
 -teacher
--guidance
 -student
--others

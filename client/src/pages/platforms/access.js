@@ -1,11 +1,11 @@
 import ADMINISTRATOR from "./administrator/access";
-import PRINCIPAL from "./principal/access";
+import COORDINATOR from "./coordinator/access";
 import TEACHER from "./teacher/access";
 import STUDENT from "./student/access";
 
 const ACCESS = {
   ADMINISTRATOR,
-  PRINCIPAL,
+  COORDINATOR,
   TEACHER,
   STUDENT,
 };

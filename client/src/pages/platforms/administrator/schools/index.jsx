@@ -6,22 +6,22 @@ import {
   MDBIcon,
   MDBTable,
   MDBView,
+  MDBBtnGroup,
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
-import { fullAddress } from "../../../../services/utilities"; // fullName
+import { fullAddress, fullName } from "../../../../services/utilities"; // fullName
 import {
   BROWSE,
   RESET,
 } from "../../../../services/redux/slices/resources/schools";
 import Modal from "./modal";
 
-export default function Schools({}) {
+export default function Schools() {
   const [schools, setSchools] = useState([]),
-  [showModal, setShowModal] = useState(false),
+    [showModal, setShowModal] = useState(false),
     [willCreate, setWillCreate] = useState(true),
     { token } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ schools }) => schools),
-    
     dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,9 +34,10 @@ export default function Schools({}) {
     setSchools(collections);
   }, [collections]);
 
-  const toggleModal = () => setShowModal(!showModal);
-
-
+  const toggleModal = (data) => {
+    setWillCreate(data);
+    setShowModal(!showModal);
+  };
 
   return (
     <>
@@ -74,9 +75,7 @@ export default function Schools({}) {
                 <MDBIcon icon="search" />
               </MDBBtn>
               <MDBBtn
-                  onClick={
-                     alert('sa,p')
-                  }
+                onClick={() => toggleModal(true)}
                 type="button"
                 size="sm"
                 color="success"
@@ -100,8 +99,8 @@ export default function Schools({}) {
                     className="text-primary"
                   />
                 </th>
-                <th className="th-lg">Abbr</th>
-                <th className="th-lg">Address</th>
+                <th className="th-lg">Category</th>
+                <th className="th-lg">Coordinator</th>
                 {/* <th /> */}
               </tr>
             </thead>
@@ -114,14 +113,28 @@ export default function Schools({}) {
                 </tr>
               )}
               {schools?.map((school) => {
-                const { logo, name, abbreviation, address, _id } = school;
+                const { logo, name, category, address, _id, coordinator } =
+                  school;
+
                 return (
                   <tr key={_id}>
                     <td>{logo}</td>
-                    <td>{name}</td>
-                    <td>{abbreviation}</td>
-                    <td className="text-uppercase">{fullAddress(address)}</td>
-                    {/* <td className="py-2 text-center">
+                    <td>
+                      <h4>{name}</h4>
+                      {fullAddress(address)}
+                    </td>
+                    <td>
+                      {category?.map((item, index) => (
+                        <span key={index}>
+                          {item}
+                          {index < category?.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </td>
+                    <td className="text-uppercase">
+                      {fullName(coordinator.fullName)}
+                    </td>
+                    <td className="py-2 text-center">
                       <MDBBtnGroup>
                         <MDBBtn
                           title="Settings"
@@ -133,19 +146,10 @@ export default function Schools({}) {
                           //     setShow(true);
                           //   }}
                         >
-                          <MDBIcon icon="pencil-alt" />
-                        </MDBBtn>
-                        <MDBBtn
-                          title="Disable Account"
-                          color="danger"
-                          size="sm"
-                          rounded
-                          //   onClick={() => setShowDisable(true)}
-                        >
-                          <MDBIcon icon="trash" />
+                          <MDBIcon icon="tag" />
                         </MDBBtn>
                       </MDBBtnGroup>
-                    </td> */}
+                    </td>
                   </tr>
                 );
               })}

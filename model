@@ -22,7 +22,7 @@ employments
 -title          | string required
 -user           | objectId required
 -isRegular      | boolean default: false
--access         | enum [ principal, vice, head, master, teacher, registrar, guidance, others ]
+-access         | enum [ coordinator, teacher ]
 -salary         | number required
 
 (Files: enrollments/email)

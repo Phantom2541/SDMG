@@ -1,34 +1,10 @@
 [
   {
-    "value": "VICE",
-    "str": "VICE PRINCIPAL"
-  },
-  {
-    "value": "HEAD",
-    "str": "HEAD TEACHER"
-  },
-  {
-    "value": "MASTER",
-    "str": "MASTER TEACHER"
-  },
-  {
     "value": "TEACHER",
     "str": "TEACHER"
   },
   {
-    "value": "REGISTRAR",
-    "str": "REGISTRAR"
-  },
-  {
-    "value": "CASHIER",
-    "str": "CASHIER"
-  },
-  {
-    "value": "GUIDANCE",
-    "str": "GUIDANCE COUNSILOR"
-  },
-  {
-    "value": "OTHERS",
-    "str": "SUPPORT STAFF"
+    "value": "COORDINATOR",
+    "str": "COORDINATOR"
   }
 ]

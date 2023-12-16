@@ -16,7 +16,7 @@ exports.save = async (req, res) => {
   Entity.create(employment)
     .then((_employment) => {
       var success =
-        "The form has been submitted; please await validation by the principal.";
+        "The form has been submitted; please await validation by the COORDINATOR.";
 
       if (!employment.isPublished) success = "Form draft saved.";
 
@@ -48,13 +48,13 @@ exports.update = async (req, res) => {
     })
     .then((_employment) => {
       var success =
-        "The form has been submitted; please await validation by the principal.";
+        "The form has been submitted; please await validation by the coordinator.";
 
       if (!employment.isPublished) success = "Form draft updated.";
 
       let shouldRefresh = false;
 
-      // principal chooses to approve one of these roles
+      // coordinator chooses to approve one of these roles
       if (
         employment.status === "approved" &&
         ["HEAD", "MASTER", "VICE"].includes(employment.access)

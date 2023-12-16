@@ -1,17 +1,69 @@
+import React, { useEffect } from "react";
 import {
   MDBBtn,
-  MDBBtnGroup,
   MDBCard,
   MDBCardBody,
   MDBIcon,
   MDBTable,
   MDBView,
 } from "mdbreact";
-import React, { useState } from "react";
-import Modal from "./modal";
+import { useDispatch, useSelector } from "react-redux";
+import { useToasts } from "react-toast-notifications";
+import { BROWSE } from "../../../../services/redux/slices/resources/students";
+import Swal from "sweetalert2";
 
-export default function Schedules() {
-  const [show, setShow] = useState(false);
+export default function Students() {
+  //  [students, setStudents] = useState([]),
+  const { token } = useSelector(({ auth }) => auth),
+    { collections, isSuccess, message } = useSelector(
+      ({ students }) => students
+    ),
+    dispatch = useDispatch(),
+    { addToast } = useToasts();
+
+  useEffect(() => {
+    if (message) {
+      addToast(message, {
+        appearance: isSuccess ? "success" : "error",
+      });
+    }
+  }, [isSuccess, message, addToast]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(
+        BROWSE({
+          data: {
+            year: 8,
+            course: "HUMSS",
+            section: "venus",
+          },
+          token,
+        })
+      );
+    }
+    if (collections) {
+      const { value: file } = Swal.fire({
+        icon: "warning",
+        title: "Section Venus has no Students",
+        input: "file",
+      });
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          Swal.fire({
+            title: "Your uploaded picture",
+            imageUrl: e.target.result,
+            imageAlt: "The uploaded picture",
+          });
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  }, [collections, token, dispatch]);
 
   return (
     <>
@@ -20,7 +72,7 @@ export default function Schedules() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">Section List</span>
+          <span className="ml-3">List</span>
 
           <form
             id="requirements-inline-search"
@@ -55,7 +107,6 @@ export default function Schedules() {
                 size="sm"
                 color="primary"
                 className="d-inline  px-2"
-                onClick={() => setShow(true)}
                 title="Create a Subject"
               >
                 <MDBIcon icon="plus" />
@@ -67,27 +118,17 @@ export default function Schedules() {
           <MDBTable responsive hover>
             <thead>
               <tr>
-                <th
-                  className="th-lg cursor-pointer"
-                  // onClick={() =>
-                  //   setOrderIndex((prev) => {
-                  //     if (prev > 1) return 0;
-
-                  //     return prev + 1;
-                  //   })
-                  // }
-                >
-                  Subject&nbsp;
+                <th className="th-lg cursor-pointer">
+                  Grade Level&nbsp;
                   <MDBIcon
                     icon="sort"
                     title="Sort by Name"
                     className="text-primary"
                   />
                 </th>
-                <th className="th-lg">Hours per day</th>
+                <th className="th-lg">Strand</th>
 
-                <th className="th-lg">Teacher</th>
-                <th />
+                <th className="th-lg">Section</th>
               </tr>
             </thead>
             <tbody>
@@ -95,41 +136,11 @@ export default function Schedules() {
                 <td></td>
                 <td></td>
                 <td></td>
-
-                <td className="py-2 text-center">
-                  <MDBBtnGroup>
-                    <MDBBtn
-                      className="m-0"
-                      size="sm"
-                      color="info"
-                      rounded
-                      title="Update"
-                      // onClick={() => {
-                      //   setWillCreate(false);
-                      //   setSelected(section);
-                      //   setShow(true);
-                      // }}
-                    >
-                      <MDBIcon icon="pen" />
-                    </MDBBtn>
-                    <MDBBtn
-                      className="m-0"
-                      size="sm"
-                      rounded
-                      color="danger"
-                      title="Delete"
-                      // onClick={() => handleDelete(index)}
-                    >
-                      <MDBIcon icon="trash-alt" />
-                    </MDBBtn>
-                  </MDBBtnGroup>
-                </td>
               </tr>
             </tbody>
           </MDBTable>
         </MDBCardBody>
       </MDBCard>
-      <Modal show={show} toggle={() => setShow(false)} />
     </>
   );
 }

@@ -7,6 +7,11 @@ import {
   MDBIcon,
   MDBModalHeader,
   MDBInput,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardHeader,
+  MDBCardBody,
 } from "mdbreact";
 import {
   SAVE,
@@ -14,16 +19,17 @@ import {
 } from "../../../../services/redux/slices/resources/schools";
 import { isEqual } from "lodash";
 import { useToasts } from "react-toast-notifications";
-
+import AddressSelect from "../../../../components/addressSelect";
 // declare your expected items
 const _form = {
   name: "",
 };
 
 export default function Modal({ show, toggle, selected, willCreate }) {
-  const { isLoading } = useSelector(({ personnels }) => personnels),
+  const { isLoading } = useSelector(({ schools }) => schools),
     { token } = useSelector(({ auth }) => auth),
     [form, setForm] = useState(_form),
+    [address, setAddress] = useState(_form),
     { addToast } = useToasts(),
     dispatch = useDispatch();
 
@@ -73,15 +79,21 @@ export default function Modal({ show, toggle, selected, willCreate }) {
     willCreate ? form[key] : form[key] || selected[key];
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
-
+  // const handleCategory =()=>
   return (
-    <MDBModal isOpen={show} toggle={toggle} backdrop disableFocusTrap={false}>
+    <MDBModal
+      size="xl"
+      isOpen={show}
+      toggle={toggle}
+      backdrop
+      disableFocusTrap={false}
+    >
       <MDBModalHeader
         toggle={toggle}
         className="light-blue darken-3 white-text"
       >
         <MDBIcon icon="user" className="mr-2" />
-        {willCreate ? "Create" : "Update"} {selected.name || "a Role"}
+        {willCreate ? "Create" : "Update"}
       </MDBModalHeader>
       <MDBModalBody className="mb-0">
         <form onSubmit={handleSubmit}>
@@ -93,6 +105,141 @@ export default function Modal({ show, toggle, selected, willCreate }) {
             required
             icon="user-shield"
           />
+          <MDBInput
+            type="text"
+            label="Abbreviation"
+            value={handleValue("abbreviation")}
+            onChange={(e) => handleChange("abbreviation", e.target.value)}
+            required
+            icon="user-shield"
+          />
+
+          <label> Category</label>
+          <MDBRow>
+            <MDBCol md="4" className="mb-4">
+              <MDBCard>
+                <MDBCardHeader color="primary-color">
+                  <MDBIcon fixed icon="chalkboard" className="mr-3" />
+                  Elementary
+                </MDBCardHeader>
+                <MDBCardBody>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      onClick={(e) => handleChange("category", "Pre")}
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Pre Elementary
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      onClick={(e) => handleChange("category", "Elem")}
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Elementary
+                    </label>
+                  </div>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+
+            <MDBCol md="4" className="mb-4">
+              <MDBCard>
+                <MDBCardHeader color="secondary-color">
+                  <MDBIcon fixed icon="chalkboard" className="mr-3" />
+                  High School
+                </MDBCardHeader>
+                <MDBCardBody>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      onClick={(e) => handleChange("category", "JHS")}
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Junior
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Senior
+                    </label>
+                  </div>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+
+            <MDBCol md="4" className="mb-4">
+              <MDBCard>
+                <MDBCardHeader color="success-color">
+                  <MDBIcon fixed icon="chalkboard" className="mr-3" />
+                  College
+                </MDBCardHeader>
+                <MDBCardBody>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Under Graduate
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Masteral
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value={handleValue("category")}
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Doctorate
+                    </label>
+                  </div>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+
+          <AddressSelect
+            label="Campus Address"
+            address={address}
+            handleChange={(_, value) => setAddress(value)}
+          />
+
           <div className="text-center mb-1-half">
             <MDBBtn
               type="submit"

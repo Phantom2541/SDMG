@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { MDBBtn, MDBIcon, MDBTypography } from "mdbreact";
 import { formatGradeLvl, fullName } from "../../services/utilities";
 import { Courses } from "../../services/fakeDb";
-import Learner from "../../pages/platforms/student/enrollment/learner";
-import Basic from "../../pages/platforms/student/enrollment/basic";
-import Address from "../../pages/platforms/student/enrollment/address";
-import Guardian from "../../pages/platforms/student/enrollment/guardian";
+// import Learner from "../../pages/platforms/student/enrollment/learner";
+// import Basic from "../../pages/platforms/student/enrollment/basic";
+// import Address from "../../pages/platforms/student/enrollment/address";
+// import Guardian from "../../pages/platforms/student/enrollment/guardian";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BROWSE,
@@ -212,10 +212,10 @@ export default function View({ enrollment, setSelected }) {
   };
 
   const componentMap = {
-    0: Learner,
-    1: Basic,
-    2: Address,
-    3: Guardian,
+    // 0: Learner,
+    // 1: Basic,
+    // 2: Address,
+    // 3: Guardian,
     // 4: Returning,
   };
 

@@ -3,6 +3,10 @@ const mongoose = require("mongoose"),
 
 const userSchema = new mongoose.Schema(
   {
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Schools",
+    },
     email: {
       type: String,
       unique: true,
@@ -147,6 +151,7 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",
     },
+
     lrn: {
       type: String,
     },

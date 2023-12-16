@@ -33,6 +33,10 @@ exports.save = (req, res) => {
 exports.browse = (req, res) => {
   Entity.find()
     .select("-createdAt -updatedAt -__v")
+    .populate({
+      path: "coordinator",
+      select: "fullName",
+    })
     .sort({ createdAt: -1 })
     .lean()
     .then((payload) =>
