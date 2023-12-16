@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   MDBBtn,
   MDBCard,
@@ -13,8 +13,8 @@ import { BROWSE } from "../../../../services/redux/slices/resources/students";
 import Swal from "sweetalert2";
 
 export default function Students() {
-  const [students, setStudents] = useState([]),
-    { token } = useSelector(({ auth }) => auth),
+  //  [students, setStudents] = useState([]),
+  const { token } = useSelector(({ auth }) => auth),
     { collections, isSuccess, message } = useSelector(
       ({ students }) => students
     ),

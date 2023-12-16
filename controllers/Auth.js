@@ -1,48 +1,19 @@
 const Entity = require("../models/Users"),
-  Enrollments = require("../models/Admissions/Enrollments"),
-  Employments = require("../models/Admissions/Employments"),
-  Sections = require("../models/Resources/Sections"),
+  Employments = require("../models/Employments"),
+  // Sections = require("../models/Resources/Sections"),
   generateToken = require("../config/generateToken"),
   fs = require("fs");
 
 const fetchAccess = async (user) => {
   let access = undefined,
     credentials = await Employments.findOne({ user }).select("-updatedAt -__v");
-
-  if (credentials) {
-    access = credentials.access;
-  } else {
-    credentials = await Enrollments.findOne({ user })
-      .select("-updatedAt -__v")
-      .populate({
-        path: "course",
-        select: "pk",
-      })
-      .populate("section");
-    access = "STUDENT";
-  }
-
-  // const [employment, enrollment] = await Promise.all([, ,]);
-
-  // if (employment) {
-  //   if (employment.status === "approved") access = employment.access;
-  //   let section = undefined;
-  //   if (employment.access === "TEACHER")
-  //     section = await Sections.findOne({ adviser: employment._id }).populate({
-  //       path: "course",
-  //       select: "pk",
-  //     });
-  //   credentials = { ...employment._doc, section };
-  // } else if (enrollment) {
-  //   credentials = enrollment;
-  // }
+  access = credentials ? credentials.access : "STUDENT";
 
   return { access, credentials };
 };
 
 exports.login = (req, res) => {
   const { email, password } = req.query;
-
   Entity.findOne({ email })
     .select("-createdAt -updatedAt -__v")
     .then(async (item) => {

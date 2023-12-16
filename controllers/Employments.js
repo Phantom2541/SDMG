@@ -1,7 +1,7 @@
-const Entity = require("../../models/Admissions/Employments"),
-  Users = require("../../models/Users"),
-  Sections = require("../../models/Resources/Sections"),
-  handleQuery = require("../../config/query");
+const Entity = require("../models/Employments"),
+  Users = require("../models/Users"),
+  Sections = require("../models/Resources/Sections"),
+  handleQuery = require("../config/query");
 
 exports.save = async (req, res) => {
   const { user, employment } = req.body;

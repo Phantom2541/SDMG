@@ -6,8 +6,8 @@ const router = require("express").Router(),
     teachers,
     faculty,
     employees,
-  } = require("../../controllers/Admissions/Employments"),
-  { validate } = require("../../middleware/jwt");
+  } = require("../controllers/Employments"),
+  { validate } = require("../middleware/jwt");
 
 router
   .get("/browse", validate, browse)

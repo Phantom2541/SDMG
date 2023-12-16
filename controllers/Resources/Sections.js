@@ -1,6 +1,5 @@
 const Entity = require("../../models/Resources/Sections"),
-  Employments = require("../../models/Admissions/Employments"),
-  Enrollments = require("../../models/Admissions/Enrollments");
+  Employments = require("../../models/Employments");
 
 exports.save = (req, res) => {
   const { adviser, name, gradeLvl, department } = req.body;

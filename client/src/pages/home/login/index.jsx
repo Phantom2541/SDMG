@@ -36,7 +36,7 @@ export default function Login({ show, toggle = null }) {
   useEffect(() => {
     if (auth._id && didLogin) {
       let basePath = "/dashboard";
-      if (credentials.status === "pending") {
+      if (credentials?.status && credentials.status === "pending") {
         basePath = "/enrollment";
         if (credentials.access) basePath = "/employment";
       }

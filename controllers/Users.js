@@ -1,6 +1,5 @@
 const Entity = require("../models/Users"),
-  Enrollments = require("../models/Admissions/Enrollments"),
-  Employments = require("../models/Admissions/Employments"),
+  Employments = require("../models/Employments"),
   handleDuplicate = require("../config/duplicate"),
   handleQuery = require("../config/query"),
   bulkWrite = require("../config/bulkWrite");
