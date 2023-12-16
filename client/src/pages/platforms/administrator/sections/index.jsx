@@ -16,7 +16,7 @@ import {
 } from "../../../../services/redux/slices/resources/schools";
 import { Modal } from "./modal";
 
-export default function Schools({}) {
+export default function Sections({}) {
   const [employees, setEmployees] = useState([]),
     { token } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ schools }) => schools),
