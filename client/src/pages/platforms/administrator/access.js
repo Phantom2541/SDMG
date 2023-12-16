@@ -1,5 +1,6 @@
 import Dashboard from "./dashboard";
 import Schools from "./schools";
+import Sections from "./sections";
 // import Employees from "./accounts/employees";
 import Students from "./students";
 
@@ -18,9 +19,15 @@ const access = [
   },
   {
     name: "School",
-    icon: "tachometer-alt",
+    icon: "school",
     path: "/school",
     component: Schools,
+  },
+  {
+    name: "Sections",
+    icon: "newspaper",
+    path: "/sections",
+    component: Sections,
   },
 ];
 

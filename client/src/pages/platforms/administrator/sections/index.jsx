@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   MDBBtn,
+  MDBBtnGroup,
   MDBCard,
   MDBCardBody,
   MDBIcon,
@@ -8,14 +9,14 @@ import {
   MDBView,
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
-import { fullAddress } from "../../../../services/utilities"; // fullName
+import { fullAddress, fullName } from "../../../../services/utilities";
 import {
   BROWSE,
   RESET,
 } from "../../../../services/redux/slices/resources/schools";
-// import { Modal } from "./modal";
+import { Modal } from "./modal";
 
-export default function Schools({}) {
+export default function Sections({}) {
   const [employees, setEmployees] = useState([]),
     { token } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ schools }) => schools),
