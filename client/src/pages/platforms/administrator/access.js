@@ -1,6 +1,8 @@
 import Dashboard from "./dashboard";
-import Employees from "./accounts/employees";
 import Schools from "./schools";
+// import Employees from "./accounts/employees";
+import Students from "./students";
+
 const access = [
   {
     name: "Dashboard",
@@ -9,26 +11,10 @@ const access = [
     component: Dashboard,
   },
   {
-    name: "Accounts",
-    icon: "users",
-    path: "/accounts",
-    children: [
-      {
-        name: "Employees",
-        path: "/employees",
-        component: Employees,
-        props: {
-          query: {
-            access: JSON.stringify({ $nin: ["ADMINISTRATOR"] }),
-            isPublished: true,
-          },
-        },
-      },
-      {
-        name: "Students",
-        path: "/students",
-      },
-    ],
+    name: "Students",
+    icon: "user",
+    path: "/students",
+    component: Students,
   },
   {
     name: "School",
