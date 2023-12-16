@@ -118,7 +118,7 @@ export default function Account({ setView }) {
                     })
                   }
                   label="First name"
-                  required
+                  disabled
                 />
               </MDBCol>
               <MDBCol md="3" className="px-0">
@@ -132,6 +132,7 @@ export default function Account({ setView }) {
                     })
                   }
                   label="Middle name"
+                  disabled
                 />
               </MDBCol>
               <MDBCol md="4" className="px-0">
@@ -145,7 +146,7 @@ export default function Account({ setView }) {
                     })
                   }
                   label="Last name"
-                  required
+                  disabled
                 />
               </MDBCol>
               <MDBCol md="1" style={{ paddingTop: "2px" }} className="pl-0">
@@ -209,6 +210,7 @@ export default function Account({ setView }) {
                   onChange={(e) => handleChange("dob", e.target.value)}
                   required
                   label="Birthdate"
+                  disabled
                 />
               </MDBCol>
               <MDBCol md="4">
@@ -258,7 +260,7 @@ export default function Account({ setView }) {
                   }
                 />
               </MDBCol>
-              <MDBCol>
+              {/* <MDBCol>
                 <MDBInput
                   type="number"
                   label="Zip Code"
@@ -267,7 +269,7 @@ export default function Account({ setView }) {
                     setAddress({ ...address, zip: e.target.value })
                   }
                 />
-              </MDBCol>
+              </MDBCol> */}
             </MDBRow>
             <div
               className={
@@ -276,27 +278,6 @@ export default function Account({ setView }) {
                   : "text-center"
               }
             >
-              {role === "GUEST" && (
-                <MDBBtn
-                  onClick={() => {
-                    if (!auth.dob)
-                      return addToast(
-                        "Please complete your Account Details first.",
-                        {
-                          appearance: "info",
-                        }
-                      );
-
-                    setView("enrollment");
-                  }}
-                  type="button"
-                  color="primary"
-                  rounded
-                >
-                  Enrollment form
-                </MDBBtn>
-              )}
-
               <MDBBtn color="info" type="submit" rounded>
                 Update account
               </MDBBtn>

@@ -6,6 +6,7 @@ import announcements from "./slices/announcements";
 import requirements from "./slices/admissions/requirements";
 import rooms from "./slices/resources/rooms";
 import subjects from "./slices/resources/subjects";
+import schools from "./slices/resources/schools";
 import sections from "./slices/resources/sections";
 import employments from "./slices/admissions/employments";
 import courses from "./slices/resources/courses";
@@ -24,6 +25,7 @@ const store = configureStore({
     subjects,
     sections,
     courses,
+    schools,
   },
 });
 

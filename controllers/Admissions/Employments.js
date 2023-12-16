@@ -76,7 +76,7 @@ exports.update = async (req, res) => {
 };
 
 exports.browse = (req, res) => {
-  Entity.find({ status: { $in: ["pending", "approved"] } })
+  Entity.find({ year: "", course: "", section: "" })
     .populate({
       path: "user",
       select:

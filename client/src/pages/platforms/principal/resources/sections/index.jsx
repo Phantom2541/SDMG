@@ -35,11 +35,11 @@ export default function Sections() {
     }
   }, [isSuccess, message, addToast]);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     dispatch(BROWSE({ token }));
-  //   }
-  // }, [dispatch, token]);
+  useEffect(() => {
+    if (token) {
+      dispatch(BROWSE({ token, sections: "35446843" }));
+    }
+  }, [dispatch, token]);
 
   useEffect(() => {
     setSections(collections);
