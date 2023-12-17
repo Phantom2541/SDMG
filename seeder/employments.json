@@ -16,8 +16,11 @@
     "user": {
       "$oid": "65757e0f0f11d7046355ae9c"
     },
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
     "position": "COORDINATOR",
-    "access": "OTHERS",
+    "access": "COORDINATOR",
     "isPublished": false,
     "status": "pending",
     "remarks": "",

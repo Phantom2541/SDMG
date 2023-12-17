@@ -123,14 +123,7 @@ export default function Schools() {
                       <h4>{name}</h4>
                       {fullAddress(address)}
                     </td>
-                    <td>
-                      {category?.map((item, index) => (
-                        <span key={index}>
-                          {item}
-                          {index < category?.length - 1 && ", "}
-                        </span>
-                      ))}
-                    </td>
+                    <td>{category?.join(", ")}</td>
                     <td className="text-uppercase">
                       {fullName(coordinator.fullName)}
                     </td>
