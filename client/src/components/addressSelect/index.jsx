@@ -44,7 +44,9 @@ export default function AddressSelect({
 
   return (
     <>
-      <h6>{label}</h6>
+      <h6>
+        <b>{label}</b>
+      </h6>
       <MDBRow className={`${view && "pt-2"}`}>
         <MDBCol md={size} className="px-1">
           {view ? (

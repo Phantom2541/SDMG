@@ -79,7 +79,22 @@ export default function Modal({ show, toggle, selected, willCreate }) {
     willCreate ? form[key] : form[key] || selected[key];
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
-  // const handleCategory =()=>
+  // State to manage the checked status of multiple checkboxes
+  const [checkedItems, setCheckedItems] = useState({});
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = (itemName) => {
+    console.log(itemName);
+    setCheckedItems((prevCheckedItems) => {
+      console.log("collection", prevCheckedItems);
+      return {
+        ...prevCheckedItems,
+        [itemName]: !prevCheckedItems[itemName],
+      };
+    });
+
+    console.log(checkedItems);
+  };
   return (
     <MDBModal
       size="xl"
@@ -99,6 +114,14 @@ export default function Modal({ show, toggle, selected, willCreate }) {
         <form onSubmit={handleSubmit}>
           <MDBInput
             type="text"
+            label="School ID"
+            value={handleValue("id")}
+            onChange={(e) => handleChange("id", e.target.value)}
+            required
+            icon="user-shield"
+          />
+          <MDBInput
+            type="text"
             label="Name"
             value={handleValue("name")}
             onChange={(e) => handleChange("name", e.target.value)}
@@ -113,8 +136,12 @@ export default function Modal({ show, toggle, selected, willCreate }) {
             required
             icon="user-shield"
           />
-
-          <label> Category</label>
+          <label>
+            <b>Category :</b>
+            {Object.keys(checkedItems)
+              .filter((key) => checkedItems[key])
+              .join(", ")}
+          </label>
           <MDBRow>
             <MDBCol md="4" className="mb-4">
               <MDBCard>
@@ -123,28 +150,28 @@ export default function Modal({ show, toggle, selected, willCreate }) {
                   Elementary
                 </MDBCardHeader>
                 <MDBCardBody>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      onClick={(e) => handleChange("category", "Pre")}
-                      id="flexCheckChecked"
+                      checked={checkedItems["prep"] || false}
+                      onChange={() => handleCheckboxChange("prep")}
+                      id="prep"
                     />
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label className="form-check-label" htmlFor="prep">
                       Pre Elementary
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      onClick={(e) => handleChange("category", "Elem")}
-                      id="flexCheckDefault"
+                      checked={checkedItems["elem"] || false}
+                      onChange={() => handleCheckboxChange("elem")}
+                      id="elem"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label className="form-check-label" htmlFor="elem">
                       Elementary
                     </label>
                   </div>
@@ -159,27 +186,28 @@ export default function Modal({ show, toggle, selected, willCreate }) {
                   High School
                 </MDBCardHeader>
                 <MDBCardBody>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      onClick={(e) => handleChange("category", "JHS")}
-                      id="flexCheckChecked"
+                      checked={checkedItems["jhs"] || false}
+                      onChange={() => handleCheckboxChange("jhs")}
+                      id="jhs"
                     />
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label className="form-check-label" htmlFor="jhs">
                       Junior
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      id="flexCheckDefault"
+                      checked={checkedItems["shs"] || false}
+                      onChange={() => handleCheckboxChange("shs")}
+                      id="shs"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label className="form-check-label" htmlFor="shs">
                       Senior
                     </label>
                   </div>
@@ -194,38 +222,41 @@ export default function Modal({ show, toggle, selected, willCreate }) {
                   College
                 </MDBCardHeader>
                 <MDBCardBody>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      id="flexCheckChecked"
+                      checked={checkedItems["college"] || false}
+                      onChange={() => handleCheckboxChange("college")}
+                      id="college"
                     />
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label className="form-check-label" htmlFor="college">
                       Under Graduate
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      id="flexCheckChecked"
+                      checked={checkedItems["masteral"] || false}
+                      onChange={() => handleCheckboxChange("masteral")}
+                      id="masteral"
                     />
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label className="form-check-label" htmlFor="masteral">
                       Masteral
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
-                      value={handleValue("category")}
-                      id="flexCheckChecked"
+                      checked={checkedItems["doctorate"] || false}
+                      onChange={() => handleCheckboxChange("doctorate")}
+                      id="doctorate"
                     />
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label className="form-check-label" htmlFor="doctorate">
                       Doctorate
                     </label>
                   </div>
