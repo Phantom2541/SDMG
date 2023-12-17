@@ -1,69 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import * as XLSL from "xlsx";
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBIcon,
+  MDBInput,
   MDBTable,
   MDBView,
 } from "mdbreact";
-import { useDispatch, useSelector } from "react-redux";
-import { useToasts } from "react-toast-notifications";
-import { BROWSE } from "../../../../services/redux/slices/resources/students";
-import Swal from "sweetalert2";
 
 export default function Students() {
-  //  [students, setStudents] = useState([]),
-  const { token } = useSelector(({ auth }) => auth),
-    { collections, isSuccess, message } = useSelector(
-      ({ students }) => students
-    ),
-    dispatch = useDispatch(),
-    { addToast } = useToasts();
+  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    if (message) {
-      addToast(message, {
-        appearance: isSuccess ? "success" : "error",
-      });
-    }
-  }, [isSuccess, message, addToast]);
+  const handleFileUpload = (e) => {
+    const reader = new FileReader();
+    reader.readAsBinaryString(e.target.files[0]);
+    reader.onload = (e) => {
+      const data = e.target.result;
+      const workbook = XLSL.read(data, { type: "binary" });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const parsedData = XLSL.utils.sheet_to_json(sheet, { defval: "N/A" });
 
-  useEffect(() => {
-    if (token) {
-      dispatch(
-        BROWSE({
-          data: {
-            year: 8,
-            course: "HUMSS",
-            section: "venus",
-          },
-          token,
-        })
-      );
-    }
-    if (collections) {
-      const { value: file } = Swal.fire({
-        icon: "warning",
-        title: "Section Venus has no Students",
-        input: "file",
+      // Iterate through the rows and replace empty values with "n/a"
+      const updatedData = parsedData.map((row) => {
+        Object.keys(row).forEach((key) => {
+          if (row[key] === undefined || row[key] === null || row[key] === "") {
+            row[key] = "n/a";
+          }
+        });
+        return row;
       });
 
-      if (file) {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          Swal.fire({
-            title: "Your uploaded picture",
-            imageUrl: e.target.result,
-            imageAlt: "The uploaded picture",
-          });
-        };
-
-        reader.readAsDataURL(file);
-      }
-    }
-  }, [collections, token, dispatch]);
+      setData(updatedData);
+    };
+  };
+  console.log(data);
 
   return (
     <>
@@ -72,72 +44,63 @@ export default function Students() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">List</span>
+          <span className="ml-3">List of student</span>
 
           <form
             id="requirements-inline-search"
             // onSubmit={handleSearch}
             className="form-inline ml-2"
           >
-            <div className="form-group md-form py-0 mt-0">
-              <input
-                className="form-control w-80 placeholder-white text-white"
-                type="text"
-                placeholder="Title Search..."
-                name="searchKey"
-                required
+            <div className="form-group py-0 mt-0">
+              <MDBInput
+                type="file"
+                className="d-none"
+                accept=".xlsx, .xls"
+                id="uploadExcel"
+                onChange={handleFileUpload}
               />
-              <MDBBtn
-                // onClick={() => {
-                //   if (!didSearch) return;
-
-                //   setDidSearch(false);
-                //   document.getElementById("requirements-inline-search").reset();
-                //   setSections(collections);
-                // }}
-                // type={didSearch ? "button" : "submit"}
-                size="sm"
-                color="info"
-                className="d-inline ml-2 px-2"
-              >
-                <MDBIcon icon="search" />
-              </MDBBtn>
-              <MDBBtn
+              <label
                 type="button"
-                size="sm"
-                color="primary"
-                className="d-inline  px-2"
-                title="Create a Subject"
+                style={{ borderRadius: "5px", marginRight: "10px" }}
+                className="p-2 bg-primary "
+                title="Upload File"
+                htmlFor="uploadExcel"
               >
                 <MDBIcon icon="plus" />
-              </MDBBtn>
+              </label>
             </div>
           </form>
         </MDBView>
         <MDBCardBody>
           <MDBTable responsive hover>
-            <thead>
-              <tr>
-                <th className="th-lg cursor-pointer">
-                  Grade Level&nbsp;
-                  <MDBIcon
-                    icon="sort"
-                    title="Sort by Name"
-                    className="text-primary"
-                  />
-                </th>
-                <th className="th-lg">Strand</th>
-
-                <th className="th-lg">Section</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
+            {data.length > 0 ? (
+              <>
+                <thead>
+                  <tr>
+                    {Object.keys(data[0]).map((key) => (
+                      <th className="th-lg" key={key}>
+                        {key}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((row, index) => (
+                    <tr key={index}>
+                      {Object.values(row).map((value, innerIndex) => (
+                        <td key={innerIndex}>{value}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </>
+            ) : (
+              <tbody>
+                <tr>
+                  <td className="text-center">No file is uploaded yet!</td>
+                </tr>
+              </tbody>
+            )}
           </MDBTable>
         </MDBCardBody>
       </MDBCard>
