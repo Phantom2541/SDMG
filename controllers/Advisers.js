@@ -96,7 +96,7 @@ exports.browse = (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-exports.advisers = (req, res) => {
+exports.teachers = (req, res) => {
   const { department } = req.query;
 
   if (!department)
@@ -107,7 +107,7 @@ exports.advisers = (req, res) => {
 
   Entity.find({
     status: "approved",
-    access: "ADVISER",
+    access: "TEACHER",
     department,
   })
     .populate({
@@ -117,10 +117,10 @@ exports.advisers = (req, res) => {
     .select("user")
     .sort({ createdAt: -1 })
     .lean()
-    .then((advisers) =>
+    .then((teachers) =>
       res.json({
         success: "Teachers Found successfully.",
-        payload: advisers.map((teach) => ({
+        payload: teachers.map((teach) => ({
           ...teach,
           user: teach.user.fullName,
         })),
