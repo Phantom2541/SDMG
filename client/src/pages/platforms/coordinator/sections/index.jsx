@@ -6,16 +6,22 @@ import {
   MDBIcon,
   MDBTable,
   MDBView,
+  MDBCollapse,
+  MDBCollapseHeader,
+  MDBBtnGroup,
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
-import { fullAddress } from "../../../../services/utilities";
+import { fullName } from "../../../../services/utilities";
 import {
   BROWSE,
   RESET,
 } from "../../../../services/redux/slices/resources/sections";
+import Modal from "./modal";
 
 export default function Sections() {
   const [sections, setSections] = useState([]),
+    [activeId, setActiveId] = useState(-1),
+    [show, setShow] = useState(false),
     { token } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ sections }) => sections),
     dispatch = useDispatch();
@@ -28,9 +34,22 @@ export default function Sections() {
   }, [dispatch, token]);
 
   useEffect(() => {
-    setSections(collections);
+    collections && setSections(collections);
   }, [collections]);
 
+  // Group data by course and level
+  const groupedData = sections?.reduce((acc, item) => {
+    const key = `${item.course}-${item.level}`;
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(item);
+    return acc;
+  }, {});
+
+  const toggle = async () => {
+    setShow(!show);
+  };
   return (
     <>
       <MDBCard narrow>
@@ -83,64 +102,85 @@ export default function Sections() {
           </form>
         </MDBView>
         <MDBCardBody>
-          <MDBTable responsive hover>
-            <thead>
-              <tr>
-                <th className="th-lg cursor-pointer">Logo&nbsp;</th>
-                <th className="th-lg">Name</th>
-                <th className="th-lg">Abbr</th>
-                <th className="th-lg">Address</th>
-                {/* <th /> */}
-              </tr>
-            </thead>
-            <tbody>
-              {!sections?.length && (
-                <tr>
-                  <td className="text-center" colSpan="5">
-                    No recent records.
-                  </td>
-                </tr>
-              )}
-              {sections?.map((employee) => {
-                const { logo, name, abbreviation, address, _id } = employee;
-                return (
-                  <tr key={_id}>
-                    <td>{logo}</td>
-                    <td>{name}</td>
-                    <td>{abbreviation}</td>
-                    <td className="text-uppercase">{fullAddress(address)}</td>
-                    {/* <td className="py-2 text-center">
-                      <MDBBtnGroup>
-                        <MDBBtn
-                          title="Settings"
-                          color="primary"
-                          size="sm"
-                          rounded
-                          //   onClick={() => {
-                          //     setSelected(employee);
-                          //     setShow(true);
-                          //   }}
-                        >
-                          <MDBIcon icon="pencil-alt" />
-                        </MDBBtn>
-                        <MDBBtn
-                          title="Disable Account"
-                          color="danger"
-                          size="sm"
-                          rounded
-                          //   onClick={() => setShowDisable(true)}
-                        >
-                          <MDBIcon icon="trash" />
-                        </MDBBtn>
-                      </MDBBtnGroup>
-                    </td> */}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </MDBTable>
+          {Object.entries(groupedData).map(([groupKey, groupItems], index) => (
+            <div key={groupKey}>
+              <MDBCollapseHeader
+                onClick={() => {
+                  setActiveId((prev) => (prev === index ? -1 : index));
+                }}
+              >
+                <div className="d-flex justify-content-between">
+                  {/* Your header content, e.g., display course and level */}
+                  <label>{`Course: ${groupItems[0].course}, Level: ${groupItems[0].level}`}</label>
+                  <i
+                    style={{ rotate: `${activeId === index ? 0 : 90}deg` }}
+                    className="fa fa-angle-down transition-all"
+                  />
+                </div>
+              </MDBCollapseHeader>
+
+              <MDBCollapse id={`collapse-${index}`} isOpen={index === activeId}>
+                <MDBTable responsive hover>
+                  <thead>
+                    <tr>
+                      <th className="th-lg cursor-pointer">#&nbsp;</th>
+                      <th className="th-lg">Section</th>
+                      <th className="th-lg">Adviser</th>
+                      <th />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {!groupItems?.length && (
+                      <tr>
+                        <td className="text-center" colSpan="5">
+                          No recent records.
+                        </td>
+                      </tr>
+                    )}
+                    {groupItems?.map((section, index) => {
+                      const { name, _id, adviser } = section;
+
+                      return (
+                        <tr key={_id}>
+                          <td>{index + 1}</td>
+                          <td>{name}</td>
+                          <td className="text-uppercase">
+                            {fullName(adviser.fullName)}
+                          </td>
+
+                          <td className="py-2 text-center">
+                            <MDBBtnGroup>
+                              <MDBBtn
+                                title="Tag "
+                                color="primary"
+                                size="sm"
+                                rounded
+                                onClick={() => toggle()}
+                              >
+                                <MDBIcon icon="tag" />
+                              </MDBBtn>
+                              <MDBBtn
+                                title="Disable Account"
+                                color="danger"
+                                size="sm"
+                                rounded
+                                //   onClick={() => setShowDisable(true)}
+                              >
+                                <MDBIcon icon="user-slash" />
+                              </MDBBtn>
+                            </MDBBtnGroup>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </MDBTable>
+              </MDBCollapse>
+            </div>
+          ))}
         </MDBCardBody>
       </MDBCard>
+      <Modal toggle={toggle} setShow={setShow} show={show} />
     </>
   );
 }

@@ -21,7 +21,7 @@ const _form = {
 };
 
 export default function Modal({ show, toggle, selected, willCreate }) {
-  const { isLoading } = useSelector(({ personnels }) => personnels),
+  const { isLoading } = useSelector(({ adviser }) => adviser),
     { token } = useSelector(({ auth }) => auth),
     [form, setForm] = useState(_form),
     { addToast } = useToasts(),
@@ -75,24 +75,22 @@ export default function Modal({ show, toggle, selected, willCreate }) {
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
 
   return (
-    <MDBModal isOpen={show} toggle={toggle} backdrop disableFocusTrap={false}>
+    <MDBModal
+      isOpen={show}
+      toggle={toggle}
+      backdrop
+      disableFocusTrap={false}
+      size="lg"
+    >
       <MDBModalHeader
         toggle={toggle}
         className="light-blue darken-3 white-text"
       >
         <MDBIcon icon="user" className="mr-2" />
-        {willCreate ? "Create" : "Update"} {selected.name || "a Role"}
+        Tag Adviser
       </MDBModalHeader>
       <MDBModalBody className="mb-0">
         <form onSubmit={handleSubmit}>
-          <MDBInput
-            type="text"
-            label="Name"
-            value={handleValue("name")}
-            onChange={(e) => handleChange("name", e.target.value)}
-            required
-            icon="user-shield"
-          />
           <div className="text-center mb-1-half">
             <MDBBtn
               type="submit"
