@@ -31,5 +31,25 @@
       "$date": "2023-12-10T08:59:59.692Z"
     },
     "__v": 0
+  },
+  {
+    "user": {
+      "$oid": "65754ce8475d729b64f0a30c"
+    },
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "position": "ADVISER",
+    "access": "ADVISER",
+    "isPublished": false,
+    "status": "pending",
+    "remarks": "",
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "__v": 0
   }
 ]

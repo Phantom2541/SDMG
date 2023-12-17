@@ -14,7 +14,7 @@ export default function Dashboard() {
     <MDBContainer fluid>
       <div className="mb-5">
         <h4 className="text-left font-weight-bold dark-grey-text">
-          Welcome to Exam System
+          Welcome to Exam System xxx
         </h4>
         <p className="grey-text mt-3">
           As an Administrator, you can manage Questionnaires, Exams, Results and

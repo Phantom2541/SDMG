@@ -40,7 +40,7 @@ class TopNavigation extends Component {
   }
 
   handleRole(role) {
-    const direct = ["COORDINATOR", "STUDENT", "ADMINISTRATOR"];
+    const direct = ["ADMINISTRATOR", "COORDINATOR", "ADVISER", "STUDENT"];
 
     if (direct.includes(role)) return role;
 
@@ -55,7 +55,7 @@ class TopNavigation extends Component {
     };
 
     const { role } = this.props;
-    
+
     return (
       <MDBNavbar
         className="flexible-MDBNavbar"

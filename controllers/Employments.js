@@ -76,7 +76,7 @@ exports.update = async (req, res) => {
 };
 
 exports.browse = (req, res) => {
-  Entity.find({  section: req.body })
+  Entity.find({ section: req.body })
     .populate({
       path: "user",
       select:
@@ -137,7 +137,7 @@ exports.browse = (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-exports.teachers = (req, res) => {
+exports.advisers = (req, res) => {
   const { department } = req.query;
 
   if (!department)
@@ -148,7 +148,7 @@ exports.teachers = (req, res) => {
 
   Entity.find({
     status: "approved",
-    access: "TEACHER",
+    access: "ADVISER",
     department,
   })
     .populate({
@@ -158,10 +158,10 @@ exports.teachers = (req, res) => {
     .select("user")
     .sort({ createdAt: -1 })
     .lean()
-    .then((teachers) =>
+    .then((advisers) =>
       res.json({
         success: "Teachers Found successfully.",
-        payload: teachers.map((teach) => ({
+        payload: advisers.map((teach) => ({
           ...teach,
           user: teach.user.fullName,
         })),
@@ -191,12 +191,10 @@ exports.faculty = (req, res) => {
     .sort({ createdAt: -1 })
     .lean()
     .then(async (payload) => {
-      const head = payload.find(({ access }) => access === "HEAD"),
-        master = payload.find(({ access }) => access === "MASTER"),
-        teachers = [];
+      const advisers = [];
 
       for (const teach of payload.filter(
-        ({ access }) => access === "TEACHER"
+        ({ access }) => access === "ADVISER"
       )) {
         let section = undefined;
 
@@ -204,7 +202,7 @@ exports.faculty = (req, res) => {
 
         if (_section) section = _section.name;
 
-        teachers.push({
+        advisers.push({
           ...teach,
           user: teach?.user?.fullName,
           section,
@@ -213,11 +211,7 @@ exports.faculty = (req, res) => {
 
       res.json({
         success: "Faculty Found successfully.",
-        payload: {
-          head: { ...head, user: head?.user?.fullName },
-          master: { ...master, user: master?.user?.fullName },
-          teachers,
-        },
+        payload: advisers,
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));

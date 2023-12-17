@@ -22,7 +22,7 @@ employments
 -title          | string required
 -user           | objectId required
 -isRegular      | boolean default: false
--access         | enum [ coordinator, teacher ]
+-access         | enum [ coordinator, adviser ]
 -salary         | number required
 
 (Files: enrollments/email)

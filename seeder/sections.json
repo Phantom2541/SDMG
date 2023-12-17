@@ -1,0 +1,24 @@
+[
+  {
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "course": "CICT",
+    "level": "11",
+    "name": "Mabini",
+    "adviser": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    }
+  },
+  {
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "course": "CICT",
+    "level": "11",
+    "name": "Del Pilar",
+    "adviser": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    }
+  }
+]

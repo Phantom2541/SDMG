@@ -1,6 +1,25 @@
 [
   {
     "_id": {
+      "$oid": "6575620571eeb21893ab95bf"
+    },
+    "email": "admin@gmail.com",
+    "password": "$2a$10$/P/UrmBgrX9HIlqZIuZdHOM3m.Zvp20GSA7ylrtmmdLWdHmIODqO2",
+    "address": {
+      "isSame": true
+    },
+    "isMale": false,
+    "isActive": true,
+    "createdAt": {
+      "$date": "2023-12-10T07:00:21.936Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T07:00:21.936Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
       "$oid": "65754ce8475d729b64f0a30c"
     },
     "school": {
@@ -57,25 +76,6 @@
     },
     "updatedAt": {
       "$date": "2023-12-10T05:30:16.878Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6575620571eeb21893ab95bf"
-    },
-    "email": "admin@gmail.com",
-    "password": "$2a$10$/P/UrmBgrX9HIlqZIuZdHOM3m.Zvp20GSA7ylrtmmdLWdHmIODqO2",
-    "address": {
-      "isSame": true
-    },
-    "isMale": false,
-    "isActive": true,
-    "createdAt": {
-      "$date": "2023-12-10T07:00:21.936Z"
-    },
-    "updatedAt": {
-      "$date": "2023-12-10T07:00:21.936Z"
     },
     "__v": 0
   },

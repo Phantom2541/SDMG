@@ -6,11 +6,11 @@ Coordinator
 -manage subjects
 -manage department heads
 
-Teacher (many per department)
+adviser (many per department)
 -manage students per section
 
 base roles
 -administrator
 -coordinator
--teacher
+-adviser
 -student

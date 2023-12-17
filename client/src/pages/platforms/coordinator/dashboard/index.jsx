@@ -14,10 +14,10 @@ export default function Dashboard() {
     <MDBContainer fluid>
       <div className="mb-5">
         <h4 className="text-left font-weight-bold dark-grey-text">
-          Welcome to Exam System
+          Welcome to SMDG
         </h4>
         <p className="grey-text mt-3">
-          As a Candidate, you can manage Exams and Results through the sidebar.
+          As a Coordinator, you can create and view your staff.
         </p>
         <hr />
       </div>
@@ -27,7 +27,7 @@ export default function Dashboard() {
             <MDBCard>
               <MDBCardHeader color="warning-color">
                 <MDBIcon fixed icon="book-open" className="mr-3" />
-                Exams
+                Sections
               </MDBCardHeader>
               <MDBCardBody>
                 <p className="font-small grey-text">
@@ -44,7 +44,7 @@ export default function Dashboard() {
             <MDBCard>
               <MDBCardHeader color="info-color">
                 <MDBIcon icon="poll" fixed className="mr-3" />
-                Results
+                Employees
               </MDBCardHeader>
               <MDBCardBody>
                 <p className="font-small grey-text">
