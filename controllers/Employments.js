@@ -76,18 +76,20 @@ exports.update = async (req, res) => {
 };
 
 exports.browse = (req, res) => {
-  Entity.find({ section: req.body })
-    .populate({
-      path: "user",
-      select:
-        "mobile fullName motherTongue dob pob civilStatus isMale address email",
-    })
-    .sort({ createdAt: -1 })
-    .lean()
-    .then((employments) => {
-      const pending = employments.filter(
-        ({ status, isPublished }) => status === "pending" && isPublished
-      );
+  console.log(req);
+  console.log(res);
+  // Entity.find({  school: req.body.school })
+  //   .populate({
+  //     path: "user",
+  //     select:
+  //       "mobile fullName motherTongue dob pob civilStatus isMale address email",
+  //   })
+  //   .sort({ createdAt: -1 })
+  //   .lean()
+  //   .then((employments) => {
+  //     const pending = employments.filter(
+  //       ({ status, isPublished }) => status === "pending" && isPublished
+  //     );
 
   //     let taken = {
   //       access: [],
@@ -113,7 +115,7 @@ exports.browse = (req, res) => {
   //   .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-exports.advisers = (req, res) => {
+exports.teachers = (req, res) => {
   const { department } = req.query;
 
   if (!department)
@@ -124,7 +126,7 @@ exports.advisers = (req, res) => {
 
   Entity.find({
     status: "approved",
-    access: "ADVISER",
+    access: "TEACHER",
     department,
   })
     .populate({
@@ -134,10 +136,10 @@ exports.advisers = (req, res) => {
     .select("user")
     .sort({ createdAt: -1 })
     .lean()
-    .then((advisers) =>
+    .then((teachers) =>
       res.json({
         success: "Teachers Found successfully.",
-        payload: advisers.map((teach) => ({
+        payload: teachers.map((teach) => ({
           ...teach,
           user: teach.user.fullName,
         })),
@@ -167,10 +169,12 @@ exports.faculty = (req, res) => {
     .sort({ createdAt: -1 })
     .lean()
     .then(async (payload) => {
-      const advisers = [];
+      const head = payload.find(({ access }) => access === "HEAD"),
+        master = payload.find(({ access }) => access === "MASTER"),
+        teachers = [];
 
       for (const teach of payload.filter(
-        ({ access }) => access === "ADVISER"
+        ({ access }) => access === "TEACHER"
       )) {
         let section = undefined;
 
@@ -178,7 +182,7 @@ exports.faculty = (req, res) => {
 
         if (_section) section = _section.name;
 
-        advisers.push({
+        teachers.push({
           ...teach,
           user: teach?.user?.fullName,
           section,
@@ -187,7 +191,11 @@ exports.faculty = (req, res) => {
 
       res.json({
         success: "Faculty Found successfully.",
-        payload: advisers,
+        payload: {
+          head: { ...head, user: head?.user?.fullName },
+          master: { ...master, user: master?.user?.fullName },
+          teachers,
+        },
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));

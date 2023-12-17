@@ -9,7 +9,7 @@ const router = require("express").Router(),
   { validate } = require("../middleware/jwt");
 
 router
-  .get("/browse", validate, browse)
+  .get("/browse",  browse)
   .get("/employees", validate, employees)
   .get("/faculty", validate, faculty)
   .get("/teachers", validate, teachers)
