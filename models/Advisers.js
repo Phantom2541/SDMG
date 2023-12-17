@@ -79,7 +79,10 @@ const modelSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+modelSchema.query.bySchool = function (school) {
+  return this.where({ school });
+};
 
-const Entity = mongoose.model("Employments", modelSchema);
+const Entity = mongoose.model("Advisers", modelSchema);
 
 module.exports = Entity;

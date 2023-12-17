@@ -3,7 +3,6 @@ import { ENDPOINT, axioKit } from "../../utilities";
 
 const name = "auth",
   auth = JSON.parse(localStorage.getItem("auth")) || {},
-  credentials = JSON.parse(localStorage.getItem("credentials")) || {},
   role = localStorage.getItem("access"),
   maxPage = Number(localStorage.getItem("maxPage")) || 5,
   token = localStorage.getItem("token") || "",
@@ -14,7 +13,6 @@ const name = "auth",
 
 const initialState = {
   auth,
-  credentials,
   role,
   token,
   email,
@@ -73,11 +71,6 @@ export const reduxSlice = createSlice({
     INJECTROLE: (state, data) => {
       state.role = data.payload;
     },
-    INJECTCREDENTIALS: (state, data) => {
-      const { credentials, user } = data.payload;
-      state.auth = user;
-      state.credentials = credentials;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -88,12 +81,11 @@ export const reduxSlice = createSlice({
       })
       .addCase(LOGIN.fulfilled, (state, action) => {
         const { success, payload } = action.payload,
-          { token, user, access, credentials } = payload;
+          { token, user, access } = payload;
         state.token = token;
         state.email = user.email;
         state.auth = user;
         state.role = access;
-        state.credentials = credentials;
 
         state.message = success;
         state.didLogin = true;

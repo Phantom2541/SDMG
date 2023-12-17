@@ -1,30 +1,30 @@
-const Entity = require("../models/Employments"),
+const Entity = require("../models/Advisers"),
   Users = require("../models/Users"),
   Sections = require("../models/Resources/Sections"),
   handleQuery = require("../config/query");
 
 exports.save = async (req, res) => {
-  const { user, employment } = req.body;
+  const { user, adviser } = req.body;
   let _user = undefined;
 
   if (user) {
-    _user = await Users.findByIdAndUpdate(employment.user, user, {
+    _user = await Users.findByIdAndUpdate(adviser.user, user, {
       new: true,
     }).select("-password");
   }
 
-  Entity.create(employment)
-    .then((_employment) => {
+  Entity.create(adviser)
+    .then((_adviser) => {
       var success =
         "The form has been submitted; please await validation by the COORDINATOR.";
 
-      if (!employment.isPublished) success = "Form draft saved.";
+      if (!adviser.isPublished) success = "Form draft saved.";
 
       res.status(201).json({
         success,
         payload: {
           user: _user,
-          employment: _employment,
+          adviser: _adviser,
         },
       });
     })
@@ -32,32 +32,32 @@ exports.save = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const { user, employment, didUpdate = false } = req.body;
+  const { user, adviser, didUpdate = false } = req.body;
   let _user = undefined;
 
   if (user) {
-    _user = await Users.findByIdAndUpdate(employment.user, user, {
+    _user = await Users.findByIdAndUpdate(adviser.user, user, {
       new: true,
     }).select("-password");
   }
 
-  Entity.findByIdAndUpdate(employment._id, employment, { new: true })
+  Entity.findByIdAndUpdate(adviser._id, adviser, { new: true })
     .populate({
       path: "user",
       select: "fullName",
     })
-    .then((_employment) => {
+    .then((_adviser) => {
       var success =
         "The form has been submitted; please await validation by the coordinator.";
 
-      if (!employment.isPublished) success = "Form draft updated.";
+      if (!adviser.isPublished) success = "Form draft updated.";
 
       let shouldRefresh = false;
 
       // coordinator chooses to approve one of these roles
       if (
-        employment.status === "approved" &&
-        ["HEAD", "MASTER", "VICE"].includes(employment.access)
+        adviser.status === "approved" &&
+        ["HEAD", "MASTER", "VICE"].includes(adviser.access)
       ) {
         shouldRefresh = true;
       }
@@ -66,7 +66,7 @@ exports.update = async (req, res) => {
         success,
         payload: {
           user: _user,
-          employment: _employment,
+          adviser: _adviser,
         },
         didUpdate,
         shouldRefresh,
@@ -76,43 +76,24 @@ exports.update = async (req, res) => {
 };
 
 exports.browse = (req, res) => {
-  console.log(req);
-  console.log(res);
-  // Entity.find({  school: req.body.school })
-  //   .populate({
-  //     path: "user",
-  //     select:
-  //       "mobile fullName motherTongue dob pob civilStatus isMale address email",
-  //   })
-  //   .sort({ createdAt: -1 })
-  //   .lean()
-  //   .then((employments) => {
-  //     const pending = employments.filter(
-  //       ({ status, isPublished }) => status === "pending" && isPublished
-  //     );
-
-  //     let taken = {
-  //       access: [],
-  //       HEAD: [],
-  //       MASTER: [],
-  //     };
-
-  //     if (
-  //       employments.find(
-  //         ({ status, access }) => status === "approved" && access === "VICE"
-  //       )
-  //     ) {
-  //       taken.access.push("VICE");
-  //     }
-
-  //       console.log(pending);
-  //     res.json({
-  //       success: "Employments Fetched Successfully.",
-  //       payload: pending,
-  //       taken,
-  //     });
-  //   })
-  //   .catch((error) => res.status(400).json({ error: error.message }));
+  Entity.find()
+    .bySchool(req.query.school)
+    .populate({
+      path: "user",
+      select:
+        "mobile fullName motherTongue dob pob civilStatus isMale address email",
+    })
+    .sort({ createdAt: -1 })
+    .lean()
+    .then((advisers) => {
+      console.log(advisers);
+      res.json({
+        success: "Advisers Fetched Successfully.",
+        payload: advisers,
+        taken: "ADVISERS",
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
 };
 
 exports.teachers = (req, res) => {

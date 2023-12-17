@@ -10,10 +10,7 @@ import {
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
 import { fullName } from "../../../../../services/utilities";
-import {
-  EMPLOYEES,
-  RESET,
-} from "../../../../../services/redux/slices/admissions/employments";
+import { EMPLOYEES, RESET } from "../../../../../services/redux/slices/adviser";
 
 export default function Employees({ query = undefined }) {
   const [employees, setEmployees] = useState([]),

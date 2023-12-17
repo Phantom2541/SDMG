@@ -14,12 +14,12 @@ import {
   socket,
 } from "../../services/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ADDENROLLMENT,
-  BROWSE,
-  RESET,
-  UPDATE,
-} from "../../services/redux/slices/admissions/enrollments";
+// import {
+//   ADDENROLLMENT,
+//   BROWSE,
+//   RESET,
+//   UPDATE,
+// } from "../../services/redux/slices/admissions/enrollments";
 import { Courses } from "../../services/fakeDb";
 import View from "./view";
 import { useToasts } from "react-toast-notifications";
@@ -35,17 +35,17 @@ export default function Enrollees({ status = "pending", setFilter }) {
     dispatch = useDispatch(),
     { addToast } = useToasts();
 
-  useEffect(() => {
-    socket.on("receive_enrollment", (enrollment) => {
-      if (enrollment.status === status) {
-        dispatch(ADDENROLLMENT(enrollment));
-      }
-    });
+  // useEffect(() => {
+  //   socket.on("receive_enrollment", (enrollment) => {
+  //     if (enrollment.status === status) {
+  //       dispatch(ADDENROLLMENT(enrollment));
+  //     }
+  //   });
 
-    return () => {
-      socket.off("receive_enrollment");
-    };
-  }, [dispatch, status]);
+  //   return () => {
+  //     socket.off("receive_enrollment");
+  //   };
+  // }, [dispatch, status]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -55,24 +55,24 @@ export default function Enrollees({ status = "pending", setFilter }) {
     }
   }, [addToast, isSuccess, message]);
 
-  useEffect(() => {
-    if (token && status) {
-      dispatch(
-        BROWSE({
-          token,
-          key: {
-            status,
-            isPublished: true,
-            batch: JSON.stringify(generateSY()),
-          },
-        })
-      );
-    }
+  // useEffect(() => {
+  //   if (token && status) {
+  //     dispatch(
+  //       BROWSE({
+  //         token,
+  //         key: {
+  //           status,
+  //           isPublished: true,
+  //           batch: JSON.stringify(generateSY()),
+  //         },
+  //       })
+  //     );
+  //   }
 
-    return () => {
-      dispatch(RESET());
-    };
-  }, [dispatch, token, status]);
+  //   return () => {
+  //     dispatch(RESET());
+  //   };
+  // }, [dispatch, token, status]);
 
   useEffect(() => {
     setStudents(collections);
@@ -98,20 +98,20 @@ export default function Enrollees({ status = "pending", setFilter }) {
       },
     });
     if (remarks) {
-      dispatch(
-        UPDATE({
-          data: {
-            enrollment: {
-              status: "rejected",
-              _id,
-              remarks,
-              isPublished: false,
-            },
-            isViewing: true,
-          },
-          token,
-        })
-      );
+      // dispatch(
+      //   UPDATE({
+      //     data: {
+      //       enrollment: {
+      //         status: "rejected",
+      //         _id,
+      //         remarks,
+      //         isPublished: false,
+      //       },
+      //       isViewing: true,
+      //     },
+      //     token,
+      //   })
+      // );
     }
   };
 
@@ -128,26 +128,26 @@ export default function Enrollees({ status = "pending", setFilter }) {
       denyButtonText: `Proceed`,
       denyButtonColor: "#3B71CA",
     }).then((res) => {
-      if (res.isDenied) {
-        dispatch(
-          UPDATE({
-            token,
-            data: {
-              user: { _id: userId },
-              enrollment: { _id, status: "paid", user: userId },
-              isViewing: true,
-            },
-          })
-        );
-      } else {
-        Swal.fire({
-          title: "Changes are not Saved!",
-          icon: "warning",
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-        });
-      }
+      // if (res.isDenied) {
+      //   // dispatch(
+      //   //   UPDATE({
+      //   //     token,
+      //   //     data: {
+      //   //       user: { _id: userId },
+      //   //       enrollment: { _id, status: "paid", user: userId },
+      //   //       isViewing: true,
+      //   //     },
+      //   //   })
+      //   );
+      // } else {
+      //   Swal.fire({
+      //     title: "Changes are not Saved!",
+      //     icon: "warning",
+      //     showConfirmButton: false,
+      //     timer: 2500,
+      //     timerProgressBar: true,
+      //   });
+      // }
     });
 
   if (selected?._id)
