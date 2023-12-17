@@ -50,7 +50,7 @@ export default function Platforms() {
         onLinkClick={toggleSideNav}
       />
       <div className="flexible-content white-skin">
-        <TopNavigation
+        <TopNavigation 
           toggle={windowWidth < breakWidth}
           onSideNavToggleClick={toggleSideNav}
           className="white-skin"

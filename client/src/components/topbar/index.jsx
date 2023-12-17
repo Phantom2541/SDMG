@@ -55,6 +55,7 @@ class TopNavigation extends Component {
     };
 
     const { role } = this.props;
+    
     return (
       <MDBNavbar
         className="flexible-MDBNavbar"
@@ -78,7 +79,7 @@ class TopNavigation extends Component {
         </div>
 
         <MDBNavbarBrand style={navStyle}>
-          <strong>{this.handleRole(role)}</strong>
+          {/* <strong>{this.handleRole(role)}</strong> */}
         </MDBNavbarBrand>
         <MDBNavbarNav expand="sm" right style={{ flexDirection: "row" }}>
           <MDBDropdown>
@@ -107,7 +108,6 @@ class TopNavigation extends Component {
 
 const mapStateToProps = (state) => {
   const { role } = state.auth;
-
   return {
     role: role,
   };

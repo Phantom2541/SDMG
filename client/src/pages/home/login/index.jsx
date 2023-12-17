@@ -37,8 +37,8 @@ export default function Login({ show, toggle = null }) {
     if (auth._id && didLogin) {
       let basePath = "/dashboard";
       if (credentials?.status && credentials.status === "pending") {
-        basePath = "/enrollment";
-        if (credentials.access) basePath = "/employment";
+        basePath = "/dashboard";
+        if (credentials.access) basePath = "/dashboard";
       }
 
       history.push(basePath);

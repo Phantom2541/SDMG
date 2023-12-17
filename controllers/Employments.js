@@ -76,7 +76,7 @@ exports.update = async (req, res) => {
 };
 
 exports.browse = (req, res) => {
-  Entity.find({ year: "", course: "", section: "" })
+  Entity.find({  section: req.body })
     .populate({
       path: "user",
       select:

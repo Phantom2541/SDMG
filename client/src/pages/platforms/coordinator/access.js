@@ -1,4 +1,5 @@
 import Dashboard from "./dashboard";
+import Employees from "./employees";
 import Sections from "./sections";
 
 const access = [
@@ -18,7 +19,7 @@ const access = [
     name: "Employees",
     icon: "users",
     path: "/employees",
-    // component: Sections,
+    component: Employees,
   },
   {
     name: "Students",

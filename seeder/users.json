@@ -83,6 +83,9 @@
     "_id": {
       "$oid": "65757e0f0f11d7046355ae9c"
     },
+    "school": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
     "email": "coordinator@gmail.com",
     "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
     "fullName": {

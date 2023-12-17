@@ -10,6 +10,11 @@ const modelSchema = new mongoose.Schema(
       ref: "Users",
       required: true,
     },
+    schools: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Schools",
+      required: true,
+    },
     position: {
       type: String,
     },
