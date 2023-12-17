@@ -89,52 +89,28 @@ exports.browse = (req, res) => {
         ({ status, isPublished }) => status === "pending" && isPublished
       );
 
-      let taken = {
-        access: [],
-        HEAD: [],
-        MASTER: [],
-      };
+  //     let taken = {
+  //       access: [],
+  //       HEAD: [],
+  //       MASTER: [],
+  //     };
 
-      if (
-        employments.find(
-          ({ status, access }) => status === "approved" && access === "VICE"
-        )
-      ) {
-        taken.access.push("VICE");
-      }
+  //     if (
+  //       employments.find(
+  //         ({ status, access }) => status === "approved" && access === "VICE"
+  //       )
+  //     ) {
+  //       taken.access.push("VICE");
+  //     }
 
-      const departments = employments.filter(
-        ({ status, access }) =>
-          status === "approved" && ["HEAD", "MASTER"].includes(access)
-      );
-
-      if (!!departments.length) {
-        const role = Array.from(
-          new Set(departments.map(({ access }) => access))
-        );
-
-        for (const key of role) {
-          taken[key] = departments
-            .filter(({ access }) => access === key)
-            .map((d) => d.department);
-        }
-
-        if (taken.HEAD.length === 4) {
-          taken.access.push("HEAD");
-        }
-
-        if (taken.MASTER.length === 4) {
-          taken.access.push("MASTER");
-        }
-      }
-
-      res.json({
-        success: "Employments Fetched Successfully.",
-        payload: pending,
-        taken,
-      });
-    })
-    .catch((error) => res.status(400).json({ error: error.message }));
+  //       console.log(pending);
+  //     res.json({
+  //       success: "Employments Fetched Successfully.",
+  //       payload: pending,
+  //       taken,
+  //     });
+  //   })
+  //   .catch((error) => res.status(400).json({ error: error.message }));
 };
 
 exports.advisers = (req, res) => {

@@ -1,6 +1,5 @@
 const router = require("express").Router(),
   {
-    browse,
     save,
     update,
     teachers,
