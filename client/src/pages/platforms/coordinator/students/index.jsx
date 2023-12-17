@@ -72,7 +72,7 @@ export default function Students() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">List</span>
+          <span className="ml-3">List of student</span>
 
           <form
             id="requirements-inline-search"
