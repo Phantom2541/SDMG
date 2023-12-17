@@ -4,7 +4,7 @@ const router = require("express").Router(),
 
 router
   .get("/browse", validate, browse)
-  .get("/advisers", validate, advisers)
+  // .get("/advisers", validate, advisers)
   .post("/save", validate, save)
   .put("/update", validate, update);
 
