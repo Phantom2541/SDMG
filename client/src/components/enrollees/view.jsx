@@ -7,12 +7,8 @@ import { Courses } from "../../services/fakeDb";
 // import Address from "../../pages/platforms/student/enrollment/address";
 // import Guardian from "../../pages/platforms/student/enrollment/guardian";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BROWSE,
-  RESET,
-} from "../../services/redux/slices/admissions/requirements";
 import Swal from "sweetalert2";
-import { UPDATE } from "../../services/redux/slices/admissions/enrollments";
+// import { UPDATE } from "../../services/redux/slices/admissions/enrollments";
 
 export default function View({ enrollment, setSelected }) {
   const { user, department, gradeLvl, course = {}, remarks, _id } = enrollment;
@@ -87,16 +83,6 @@ export default function View({ enrollment, setSelected }) {
   const goBack = () => setSelected({});
 
   useEffect(() => {
-    if (token && department) {
-      dispatch(BROWSE({ token, key: { department } }));
-    }
-
-    return () => {
-      dispatch(RESET());
-    };
-  }, [token, department, dispatch]);
-
-  useEffect(() => {
     if (enrollment?._id) {
       const { user = {}, type, _id } = enrollment,
         {
@@ -147,41 +133,39 @@ export default function View({ enrollment, setSelected }) {
       denyButtonText: `Proceed`,
       denyButtonColor: "#3B71CA",
     }).then((res) => {
-      if (res.isDenied) {
-        const user = {
-            ...basic,
-            address,
-            guardians: guardian,
-            lrn: learner.lrn,
-          },
-          enrollment = {
-            ...learner,
-            status: "validated",
-            _id,
-          };
-
-        if (address.isSame) user.address.permanent = address.current;
-
-        dispatch(
-          UPDATE({
-            data: {
-              user,
-              enrollment,
-              isViewing: true,
-            },
-            token,
-          })
-        );
-        goBack();
-      } else {
-        Swal.fire({
-          title: "Changes are not Saved!",
-          icon: "warning",
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-        });
-      }
+      // if (res.isDenied) {
+      //   const user = {
+      //       ...basic,
+      //       address,
+      //       guardians: guardian,
+      //       lrn: learner.lrn,
+      //     },
+      //     enrollment = {
+      //       ...learner,
+      //       status: "validated",
+      //       _id,
+      //     };
+      //   if (address.isSame) user.address.permanent = address.current;
+      //   // dispatch(
+      //   //   UPDATE({
+      //   //     data: {
+      //   //       user,
+      //   //       enrollment,
+      //   //       isViewing: true,
+      //   //     },
+      //   //     token,
+      //   //   })
+      //   );
+      //   goBack();
+      // } else {
+      //   Swal.fire({
+      //     title: "Changes are not Saved!",
+      //     icon: "warning",
+      //     showConfirmButton: false,
+      //     timer: 2500,
+      //     timerProgressBar: true,
+      //   });
+      // }
     });
 
   const handleForm = (index) => {

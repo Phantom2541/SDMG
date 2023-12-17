@@ -6,28 +6,27 @@ import {
   MDBIcon,
   MDBTable,
   MDBView,
+  MDBBtnGroup,
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
-import { fullAddress } from "../../../../services/utilities";
-import {
-  BROWSE,
-  RESET,
-} from "../../../../services/redux/slices/admissions/employments";
+import { fullAddress, fullName } from "../../../../services/utilities";
+import { BROWSE, RESET } from "../../../../services/redux/slices/adviser";
 
 export default function Employees() {
-  const [employees, setEmployees] = useState([]),
+  const [advisers, setAdvisers] = useState([]),
     { token } = useSelector(({ auth }) => auth),
-    { collections } = useSelector(({ schools }) => schools),
+    { collections } = useSelector(({ adviser }) => adviser),
     dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) dispatch(BROWSE({ token }));
+    if (token)
+      dispatch(BROWSE({ token, key: { school: "657cfa440a085fe7bde80d0d" } }));
 
     return () => dispatch(RESET());
   }, [dispatch, token]);
 
   useEffect(() => {
-    setEmployees(collections);
+    setAdvisers(collections);
   }, [collections]);
 
   return (
@@ -37,7 +36,7 @@ export default function Employees() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">Employees</span>
+          <span className="ml-3">Advisers</span>
 
           <form
             //   onSubmit={handleSearch}
@@ -65,7 +64,6 @@ export default function Employees() {
               >
                 <MDBIcon icon="search" />
               </MDBBtn>
-              
             </div>
           </form>
         </MDBView>
@@ -73,53 +71,63 @@ export default function Employees() {
           <MDBTable responsive hover>
             <thead>
               <tr>
+                <th className="th-lg">#</th>
                 <th className="th-lg">Fullname</th>
                 <th className="th-lg">Position</th>
-                {/* <th className="th-lg">Address</th> */}
-                {/* <th /> */}
+                <th className="th-lg">Status</th>
               </tr>
             </thead>
             <tbody>
-              {!employees?.length && (
+              {!advisers?.length && (
                 <tr>
                   <td className="text-center" colSpan="5">
                     No recent records.
                   </td>
                 </tr>
               )}
-              {employees?.map((employee) => {
-                const { logo, name, abbreviation, address, _id } = employee;
+              {advisers?.map((adviser, index) => {
+                const { status, user, position, access, _id } = adviser;
+                console.log(advisers);
                 return (
                   <tr key={_id}>
-                    <td>{logo}</td>
-                    <td>{name}</td>
-                    <td>{abbreviation}</td>
-                    <td className="text-uppercase">{fullAddress(address)}</td>
-                    {/* <td className="py-2 text-center">
+                    <td>{index + 1}</td>
+                    <td>{fullName(user.fullName)}</td>
+                    <td>{position ? position : access}</td>
+                    <td>{status}</td>
+                    {status === "pending" && <td />}
+
+                    <td className="py-2 text-center">
                       <MDBBtnGroup>
-                        <MDBBtn
-                          title="Settings"
-                          color="primary"
-                          size="sm"
-                          rounded
-                          //   onClick={() => {
-                          //     setSelected(employee);
-                          //     setShow(true);
-                          //   }}
-                        >
-                          <MDBIcon icon="pencil-alt" />
-                        </MDBBtn>
-                        <MDBBtn
-                          title="Disable Account"
-                          color="danger"
-                          size="sm"
-                          rounded
-                          //   onClick={() => setShowDisable(true)}
-                        >
-                          <MDBIcon icon="trash" />
-                        </MDBBtn>
+                        {status === "pending" && (
+                          <MDBBtn
+                            title="Approve"
+                            color="primary"
+                            size="sm"
+                            rounded
+                            //   onClick={() => {
+                            //     setSelected(adviser);
+                            //     setShow(true);
+                            //   }}
+                          >
+                            <MDBIcon icon="check" />
+                          </MDBBtn>
+                        )}
+                        {status === "approved" && (
+                          <MDBBtn
+                            title="Deny"
+                            color="danger"
+                            size="sm"
+                            rounded
+                            //   onClick={() => {
+                            //     setSelected(adviser);
+                            //     setShow(true);
+                            //   }}
+                          >
+                            <MDBIcon icon="trash" />
+                          </MDBBtn>
+                        )}
                       </MDBBtnGroup>
-                    </td> */}
+                    </td>
                   </tr>
                 );
               })}
