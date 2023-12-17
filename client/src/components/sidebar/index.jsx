@@ -88,17 +88,7 @@ export default function SideNavigation({
         triggerOpening={triggerOpening}
         style={{ transition: "padding-left .3s" }}
       >
-        <MDBSideNavNav>
-          {handleLinks()}
-          {credentials?.isEnrollmentTeacher ? (
-            <MDBSideNavLink to="/enrollees" topLevel onClick={onLinkClick}>
-              <MDBIcon icon="users" className="mr-2" fixed />
-              Enrollees
-            </MDBSideNavLink>
-          ) : (
-            <></>
-          )}
-        </MDBSideNavNav>
+        <MDBSideNavNav>{handleLinks()}</MDBSideNavNav>
       </MDBSideNav>
     </div>
   );

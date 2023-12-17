@@ -9,7 +9,7 @@ import {
   MDBBtnGroup,
 } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
-import { fullAddress, fullName } from "../../../../services/utilities";
+import { fullName } from "../../../../services/utilities";
 import { BROWSE, RESET } from "../../../../services/redux/slices/adviser";
 
 export default function Employees() {

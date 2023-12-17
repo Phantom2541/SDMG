@@ -12,22 +12,23 @@ import { fullAddress } from "../../../../services/utilities";
 import {
   BROWSE,
   RESET,
-} from "../../../../services/redux/slices/resources/schools";
+} from "../../../../services/redux/slices/resources/sections";
 
 export default function Sections() {
-  const [employees, setEmployees] = useState([]),
+  const [sections, setSections] = useState([]),
     { token } = useSelector(({ auth }) => auth),
-    { collections } = useSelector(({ schools }) => schools),
+    { collections } = useSelector(({ sections }) => sections),
     dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) dispatch(BROWSE({ token }));
+    if (token)
+      dispatch(BROWSE({ token, key: { schools: "657cfa440a085fe7bde80d0d" } }));
 
     return () => dispatch(RESET());
   }, [dispatch, token]);
 
   useEffect(() => {
-    setEmployees(collections);
+    setSections(collections);
   }, [collections]);
 
   return (
@@ -37,7 +38,7 @@ export default function Sections() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">Schools</span>
+          <span className="ml-3">Year Levels</span>
 
           <form
             //   onSubmit={handleSearch}
@@ -93,14 +94,14 @@ export default function Sections() {
               </tr>
             </thead>
             <tbody>
-              {!employees?.length && (
+              {!sections?.length && (
                 <tr>
                   <td className="text-center" colSpan="5">
                     No recent records.
                   </td>
                 </tr>
               )}
-              {employees?.map((employee) => {
+              {sections?.map((employee) => {
                 const { logo, name, abbreviation, address, _id } = employee;
                 return (
                   <tr key={_id}>

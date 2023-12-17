@@ -16,13 +16,13 @@ const modelSchema = new mongoose.Schema(
     department: {
       type: String,
     },
-    course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Courses",
-    },
+    // course: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Courses",
+    // },
     adviser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Employments",
+      ref: "Advisers",
     },
   },
   {

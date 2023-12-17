@@ -79,7 +79,7 @@ class TopNavigation extends Component {
         </div>
 
         <MDBNavbarBrand style={navStyle}>
-          {/* <strong>{this.handleRole(role)}</strong> */}
+          <strong>{this.handleRole(role)}</strong>
         </MDBNavbarBrand>
         <MDBNavbarNav expand="sm" right style={{ flexDirection: "row" }}>
           <MDBDropdown>

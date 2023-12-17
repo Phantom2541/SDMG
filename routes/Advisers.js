@@ -1,19 +1,10 @@
 const router = require("express").Router(),
-  {
-    browse,
-    save,
-    update,
-    teachers,
-    faculty,
-    employees,
-  } = require("../controllers/Advisers"),
+  { browse, save, update, advisers } = require("../controllers/Advisers"),
   { validate } = require("../middleware/jwt");
 
 router
   .get("/browse", validate, browse)
-  .get("/employees", validate, employees)
-  .get("/faculty", validate, faculty)
-  // .get("/teachers", validate, teachers)
+  .get("/advisers", validate, advisers)
   .post("/save", validate, save)
   .put("/update", validate, update);
 

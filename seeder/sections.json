@@ -7,7 +7,7 @@
     "level": "11",
     "name": "Mabini",
     "adviser": {
-      "$oid": "657cfa440a085fe7bde80d0d"
+      "$oid": "65757e0f0f11d7046355ae9d"
     }
   },
   {
@@ -17,6 +17,28 @@
     "course": "CICT",
     "level": "11",
     "name": "Del Pilar",
+    "adviser": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    }
+  },
+  {
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "course": "CICT",
+    "level": "12",
+    "name": "pias",
+    "adviser": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    }
+  },
+  {
+    "schools": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "course": "CICT",
+    "level": "12",
+    "name": "San Pedro",
     "adviser": {
       "$oid": "657cfa440a085fe7bde80d0d"
     }

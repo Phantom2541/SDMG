@@ -1,6 +1,45 @@
 const Entity = require("../../models/Resources/Sections"),
-  Employments = require("../../models/Advisers");
+  Advisers = require("../../models/Advisers");
 
+exports.browse = (req, res) => {
+  const { schools } = req.query;
+
+  if (!schools)
+    return res.status(400).json({
+      error: "Invalid Parameters",
+      message: "Schools are required.",
+    });
+
+  Entity.find({ schools })
+    .select("-createdAt -updatedAt -__v")
+    .populate({
+      path: "adviser",
+      select: "user",
+      populate: {
+        path: "user",
+        select: "fullName",
+      },
+    })
+    // .populate({
+    //   path: "course",
+    //   select: "pk",
+    // })
+    .sort({ createdAt: -1 })
+    .lean()
+    .then((payload) =>
+      res.json({
+        success: "Sections Fetched Successfully.",
+        payload: payload.map((section) => ({
+          ...section,
+          adviser: {
+            _id: section.adviser?._id,
+            fullName: section?.adviser?.user?.fullName,
+          },
+        })),
+      })
+    )
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
 exports.save = (req, res) => {
   const { adviser, name, gradeLvl, department } = req.body;
 
@@ -36,7 +75,7 @@ exports.save = (req, res) => {
             );
           }
 
-          const employment = await Employments.findById(adviser).populate({
+          const employment = await Advisers.findById(adviser).populate({
             path: "user",
             select: "fullName",
           });
@@ -56,47 +95,6 @@ exports.save = (req, res) => {
       .catch((error) => res.status(400).json({ error: error.message }));
   });
 };
-
-exports.browse = (req, res) => {
-  const { department, gradeLvl, course } = req.query;
-
-  if (!department || !gradeLvl)
-    return res.status(400).json({
-      error: "Invalid Parameters",
-      message: "Department and Grade Level are required.",
-    });
-
-  Entity.find({ department, gradeLvl, course })
-    .select("-createdAt -updatedAt -__v")
-    .populate({
-      path: "adviser",
-      select: "user",
-      populate: {
-        path: "user",
-        select: "fullName",
-      },
-    })
-    .populate({
-      path: "course",
-      select: "pk",
-    })
-    .sort({ createdAt: -1 })
-    .lean()
-    .then((payload) =>
-      res.json({
-        success: "Sections Fetched Successfully.",
-        payload: payload.map((section) => ({
-          ...section,
-          adviser: {
-            _id: section.adviser?._id,
-            fullName: section?.adviser?.user?.fullName,
-          },
-        })),
-      })
-    )
-    .catch((error) => res.status(400).json({ error: error.message }));
-};
-
 exports.update = (req, res) =>
   Entity.findByIdAndUpdate(req.body._id, req.body, {
     new: true,

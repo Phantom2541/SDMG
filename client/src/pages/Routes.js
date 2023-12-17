@@ -8,7 +8,6 @@ import ACCESS from "./platforms/access";
 //global
 import { useSelector } from "react-redux";
 import Profile from "../components/profile";
-import Enrollees from "../components/enrollees";
 
 export default function Routes() {
   const { role } = useSelector(({ auth }) => auth);
@@ -45,7 +44,6 @@ export default function Routes() {
       {handleRoutes()}
 
       <Route path="/profile" exact component={Profile} />
-      <Route path="/enrollees" exact component={Enrollees} />
 
       <Route component={NotFound} />
     </Switch>

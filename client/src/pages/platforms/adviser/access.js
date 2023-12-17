@@ -7,6 +7,12 @@ const access = [
     path: "/dashboard",
     component: Dashboard,
   },
+  {
+    name: "Advisory",
+    icon: "users",
+    path: "/advisory",
+    // component: Dashboard,
+  },
 ];
 
 export default access;
