@@ -1,0 +1,141 @@
+.account-infos {
+  position: relative;
+  letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.account-info {
+  flex: 2; /* Makes each child take equal space */
+  box-sizing: border-box; /* Ensures padding and border are included in width */
+}
+
+.account-info:nth-child(1) {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-top: 2rem;
+  pointer-events: auto;
+}
+
+.account-info:nth-child(2) {
+  line-height: 2rem;
+  margin-top: 2rem;
+  color: #9fa6b2;
+}
+
+.account-info:nth-child(3) {
+  color: #54b4d3;
+  line-height: 1.5rem;
+}
+
+.account-info:hover {
+  border-radius: 3px;
+  background-color: rgb(240, 240, 240);
+}
+
+.account-contents {
+  position: relative;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.account-content:nth-of-type(1) {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.account-content:nth-of-type(2) {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #9fa6b2;
+  text-transform: uppercase;
+}
+
+.account-basic {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #9fa6b2;
+  text-transform: uppercase;
+}
+
+.account-family {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #9fa6b2;
+  text-transform: uppercase;
+}
+
+/* onClick Editable */
+
+.editable-content {
+  position: relative;
+  width: 70%;
+}
+
+.edit-input-group {
+  display: flex;
+  gap: 1%;
+}
+
+.edit-btn-group {
+  display: flex;
+  gap: 1%;
+  transform: translate(85%, 10%);
+}
+
+.inputBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inputBox .edit-input {
+  width: 100%;
+  padding-top: 10px;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  color: black;
+}
+
+.inputBox .edit-label {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 0.9em;
+  color: rgb(210, 210, 210);
+  transition: 0.5s ease;
+}
+
+.inputBox .edit-input:valid ~ .edit-label,
+.inputBox .edit-input:focus ~ .edit-label {
+  color: black;
+  transform: translate(0, -10px);
+  font-size: 0.65em;
+  padding: 0 10px;
+}
+
+.edit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgb(120, 120, 120, 0.5);
+  transition: 0.5s ease;
+}
+
+.edit-btn:hover {
+  background-color: rgb(240, 240, 240);
+}

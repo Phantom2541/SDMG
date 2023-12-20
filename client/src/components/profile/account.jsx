@@ -1,294 +1,207 @@
-import React, { useEffect, useState } from "react";
-import {
-  MDBRow,
-  MDBCol,
-  MDBView,
-  MDBCardBody,
-  MDBInput,
-  MDBBtn,
-  MDBSelect,
-  MDBSelectInput,
-  MDBSelectOption,
-  MDBSelectOptions,
-  MDBSpinner,
-} from "mdbreact";
-import AddressSelect from "../addressSelect";
-import { useDispatch, useSelector } from "react-redux";
-import { RESET, UPDATE } from "../../services/redux/slices/auth";
-import { useToasts } from "react-toast-notifications";
-import { isEqual } from "lodash";
+import React, { useState } from "react";
+import { MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
+// import AddressSelect from "../addressSelect";
+// import { useDispatch, useSelector } from "react-redux";
+// import { RESET, UPDATE } from "../../services/redux/slices/auth";
+// import { useToasts } from "react-toast-notifications";
+// import { isEqual } from "lodash";
+import "./account.css";
 
-export default function Account({ setView }) {
-  const { auth, token, isSuccess, role } = useSelector(({ auth }) => auth),
-    [address, setAddress] = useState({
-      region: "REGION III (CENTRAL LUZON)",
-      province: "NUEVA ECIJA",
-      city: "CABANATUAN CITY",
-      barangay: "",
-      zip: "",
-      street: "",
-    }),
-    [form, setForm] = useState({
-      fullName: {
-        fname: "",
-        mname: "",
-        lname: "",
-        suffix: "",
-      },
-      dob: "",
-      mobile: "",
-      isMale: false,
-    }),
-    dispatch = useDispatch(),
-    { addToast } = useToasts();
+export default function Account() {
+  const [view, setView] = useState(true);
+  // { auth, token, isSuccess, role } = useSelector(({ auth }) => auth),
+  //   [address, setAddress] = useState({
+  //     region: "REGION III (CENTRAL LUZON)",
+  //     province: "NUEVA ECIJA",
+  //     city: "CABANATUAN CITY",
+  //     barangay: "",
+  //     zip: "",
+  //     street: "",
+  //   }),
+  //   [form, setForm] = useState({
+  //     fullName: {
+  //       fname: "",
+  //       mname: "",
+  //       lname: "",
+  //       suffix: "",
+  //     },
+  //     dob: "",
+  //     mobile: "",
+  //     isMale: false,
+  //   }),
+  //   dispatch = useDispatch(),
+  //   { addToast } = useToasts();
 
-  useEffect(() => {
-    if (auth._id && isSuccess) {
-      addToast("Account Updated Successfully", {
-        appearance: "success",
-      });
-      dispatch(RESET());
-    }
-  }, [auth, isSuccess, dispatch, addToast]);
+  // useEffect(() => {
+  //   if (auth._id && isSuccess) {
+  //     addToast("Account Updated Successfully", {
+  //       appearance: "success",
+  //     });
+  //     dispatch(RESET());
+  //   }
+  // }, [auth, isSuccess, dispatch, addToast]);
 
-  useEffect(() => {
-    if (auth._id) {
-      if (auth.address.region) setAddress(auth.address);
-      setTimeout(() => setForm(auth), 1000);
-    }
-  }, [auth]);
+  // useEffect(() => {
+  //   if (auth._id) {
+  //     if (auth.address.region) setAddress(auth.address);
+  //     setTimeout(() => setForm(auth), 1000);
+  //   }
+  // }, [auth]);
 
-  const handleChange = (key, value) => setForm({ ...form, [key]: value });
+  // const handleChange = (key, value) => setForm({ ...form, [key]: value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    const data = {
-      ...form,
-      address,
-      role: undefined,
-      email: undefined,
-      isActive: undefined,
-      updatedAt: undefined,
-      createdAt: undefined,
-    };
+  //   const data = {
+  //     ...form,
+  //     address,
+  //     role: undefined,
+  //     email: undefined,
+  //     isActive: undefined,
+  //     updatedAt: undefined,
+  //     createdAt: undefined,
+  //   };
 
-    const _auth = {
-      ...auth,
-      role: undefined,
-      email: undefined,
-      isActive: undefined,
-      updatedAt: undefined,
-      createdAt: undefined,
-    };
+  //   const _auth = {
+  //     ...auth,
+  //     role: undefined,
+  //     email: undefined,
+  //     isActive: undefined,
+  //     updatedAt: undefined,
+  //     createdAt: undefined,
+  //   };
 
-    if (isEqual(data, _auth))
-      return addToast("No changes found, skipping update.", {
-        appearance: "info",
-      });
+  //   if (isEqual(data, _auth))
+  //     return addToast("No changes found, skipping update.", {
+  //       appearance: "info",
+  //     });
 
-    dispatch(
-      UPDATE({
-        data,
-        token,
-      })
-    );
-  };
+  //   dispatch(
+  //     UPDATE({
+  //       data,
+  //       token,
+  //     })
+  //   );
+  // };
 
   return (
     <>
-      <MDBView cascade className="mdb-color lighten-3 card-header">
-        <h5 className="mb-0 font-weight-bold text-center text-white">
-          Account Details
-        </h5>
-      </MDBView>
-
-      <MDBCardBody>
-        {form._id ? (
-          <form onSubmit={handleSubmit}>
-            <MDBRow>
-              <MDBCol md="4" className="pr-0">
-                <MDBInput
-                  type="text"
-                  value={form.fullName?.fname}
-                  onChange={(e) =>
-                    handleChange("fullName", {
-                      ...form.fullName,
-                      fname: e.target.value.toUpperCase(),
-                    })
-                  }
-                  label="First name"
-                  disabled
-                />
-              </MDBCol>
-              <MDBCol md="3" className="px-0">
-                <MDBInput
-                  type="text"
-                  value={form.fullName?.mname}
-                  onChange={(e) =>
-                    handleChange("fullName", {
-                      ...form.fullName,
-                      mname: e.target.value.toUpperCase(),
-                    })
-                  }
-                  label="Middle name"
-                  disabled
-                />
-              </MDBCol>
-              <MDBCol md="4" className="px-0">
-                <MDBInput
-                  type="text"
-                  value={form.fullName?.lname}
-                  onChange={(e) =>
-                    handleChange("fullName", {
-                      ...form.fullName,
-                      lname: e.target.value.toUpperCase(),
-                    })
-                  }
-                  label="Last name"
-                  disabled
-                />
-              </MDBCol>
-              <MDBCol md="1" style={{ paddingTop: "2px" }} className="pl-0">
-                <MDBSelect
-                  className="colorful-select dropdown-primary hidden-md-down text-left"
-                  label="Suffix"
-                  getValue={(e) =>
-                    handleChange("fullName", {
-                      ...form.fullName,
-                      suffix: e[0] === "N/A" ? "" : e[0],
-                    })
-                  }
-                >
-                  <MDBSelectInput />
-                  <MDBSelectOptions>
-                    <MDBSelectOption
-                      selected={!form.fullName.suffix}
-                      value="N/A"
-                    >
-                      N/A
-                    </MDBSelectOption>
-                    <MDBSelectOption
-                      selected={form.fullName.suffix === "JR"}
-                      value="JR"
-                    >
-                      JR
-                    </MDBSelectOption>
-                    <MDBSelectOption
-                      selected={form.fullName.suffix === "III"}
-                      value="III"
-                    >
-                      III
-                    </MDBSelectOption>
-                    <MDBSelectOption
-                      selected={form.fullName.suffix === "IV"}
-                      value="IV"
-                    >
-                      IV
-                    </MDBSelectOption>
-                    <MDBSelectOption
-                      selected={form.fullName.suffix === "V"}
-                      value="V"
-                    >
-                      V
-                    </MDBSelectOption>
-                    <MDBSelectOption
-                      selected={form.fullName.suffix === "SR"}
-                      value="SR"
-                    >
-                      SR
-                    </MDBSelectOption>
-                  </MDBSelectOptions>
-                </MDBSelect>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol md="4">
-                <MDBInput
-                  type="date"
-                  value={form.dob}
-                  onChange={(e) => handleChange("dob", e.target.value)}
-                  required
-                  label="Birthdate"
-                  disabled
-                />
-              </MDBCol>
-              <MDBCol md="4">
-                <MDBInput
-                  type="text"
-                  value={form.mobile}
-                  onChange={(e) =>
-                    handleChange("mobile", e.target.value.replace(/\D/g, ""))
-                  }
-                  required
-                  label="Mobile (+63)"
-                  maxLength={10}
-                />
-              </MDBCol>
-
-              <MDBCol md="4">
-                <MDBSelect
-                  className="colorful-select dropdown-primary hidden-md-down text-left"
-                  label="Gender"
-                  getValue={(e) => handleChange("isMale", e[0] === "true")}
-                >
-                  <MDBSelectInput />
-                  <MDBSelectOptions>
-                    <MDBSelectOption selected={form.isMale} value="true">
-                      Male
-                    </MDBSelectOption>
-                    <MDBSelectOption selected={!form.isMale} value="false">
-                      Female
-                    </MDBSelectOption>
-                  </MDBSelectOptions>
-                </MDBSelect>
-              </MDBCol>
-            </MDBRow>
-            <AddressSelect
-              label="Current Address"
-              address={address}
-              handleChange={(_, value) => setAddress(value)}
-            />
-            <MDBRow>
-              <MDBCol size="8">
-                <MDBInput
-                  type="text"
-                  label="Street"
-                  value={address.street}
-                  onChange={(e) =>
-                    setAddress({ ...address, street: e.target.value })
-                  }
-                />
-              </MDBCol>
-              {/* <MDBCol>
-                <MDBInput
-                  type="number"
-                  label="Zip Code"
-                  value={address.zip}
-                  onChange={(e) =>
-                    setAddress({ ...address, zip: e.target.value })
-                  }
-                />
-              </MDBCol> */}
-            </MDBRow>
-            <div
-              className={
-                role === "GUEST"
-                  ? "d-flex justify-content-between"
-                  : "text-center"
-              }
-            >
-              <MDBBtn color="info" type="submit" rounded>
-                Update account
-              </MDBBtn>
-            </div>
-          </form>
+      <div className="float-right">
+        <MDBBtn size="sm" className="px-3 mr-5" onClick={() => setView(false)}>
+          <MDBIcon icon="pen" />
+          &nbsp; Edit Profile
+        </MDBBtn>
+      </div>
+      <div className="account-infos">
+        {view ? (
+          <div
+            className="account-info cursor-pointer"
+            onClick={() => setView(false)}
+          >
+            Jhon Kevin P. Magtalas
+          </div>
         ) : (
-          <div className="text-center">
-            <MDBSpinner />
+          <div className="editable-content">
+            <div className="edit-input-group">
+              <div className="inputBox">
+                <input className="edit-input" type="text" required="required" />
+                <label className="edit-label">First name</label>
+              </div>
+              <div className="inputBox">
+                <input className="edit-input" type="text" required="required" />
+                <label className="edit-label">Middle name</label>
+              </div>
+              <div className="inputBox">
+                <input className="edit-input" type="text" required="required" />
+                <label className="edit-label">Last name</label>
+              </div>
+            </div>
+            <div className="edit-btn-group">
+              <button className="edit-btn">
+                <MDBIcon icon="check" />
+              </button>
+              <button className="edit-btn" onClick={() => setView(true)}>
+                <MDBIcon icon="times" className="m-0 p-0" />
+              </button>
+            </div>
           </div>
         )}
-      </MDBCardBody>
+
+        <div className="account-info">
+          <MDBIcon icon="map-pin" className="text-primary" /> Nueva Vizcaya, NV
+        </div>
+      </div>
+      <div className="account-info">Senior High School Grade 12 (ABM)</div>
+      <div className="account-contents">
+        <div className="account-content">
+          <MDBIcon icon="user" /> About
+        </div>
+        <hr className="m-0" />
+        <div className="account-content">Contact Information</div>
+        <MDBRow>
+          <MDBCol md="2" className="mx-0">
+            Mobile:
+          </MDBCol>
+          <MDBCol className="text-info">+63 927 342 2159</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Address:
+          </MDBCol>
+          <MDBCol>Nueva Vizcaya, Bayombong, Magsaysay,</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            E-mail:
+          </MDBCol>
+          <MDBCol className="text-info">magtalas555@gmail.com</MDBCol>
+        </MDBRow>
+        <div className="account-basic">Basic Information</div>
+        <MDBRow>
+          <MDBCol md="2" className="mx-0">
+            Birthday:
+          </MDBCol>
+          <MDBCol>August 27, 1998</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Place Of Birth:
+          </MDBCol>
+          <MDBCol>VRH</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Age:
+          </MDBCol>
+          <MDBCol>25</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Gender:
+          </MDBCol>
+          <MDBCol>Male</MDBCol>
+        </MDBRow>
+        <div className="account-family">Legal Guardian Information</div>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Name:
+          </MDBCol>
+          <MDBCol>Evelyn Magtalas</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Relationship:
+          </MDBCol>
+          <MDBCol>Mother</MDBCol>
+        </MDBRow>
+        <MDBRow className="mt-4">
+          <MDBCol md="2" className="mx-0">
+            Mobile:
+          </MDBCol>
+          <MDBCol>+63 943 235 6463</MDBCol>
+        </MDBRow>
+      </div>
     </>
   );
 }

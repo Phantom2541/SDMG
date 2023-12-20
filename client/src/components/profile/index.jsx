@@ -6,14 +6,16 @@ import Account from "./account";
 export default function Profile() {
   return (
     <MDBContainer fluid>
-      <MDBRow>
-        <ProfileImage />
-        <MDBCol lg="9">
-          <MDBCard narrow>
+      <MDBCard className="p-5">
+        <MDBRow>
+          <MDBCol md="3">
+            <ProfileImage />
+          </MDBCol>
+          <MDBCol lg="9">
             <Account />
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
+          </MDBCol>
+        </MDBRow>
+      </MDBCard>
     </MDBContainer>
   );
 }
