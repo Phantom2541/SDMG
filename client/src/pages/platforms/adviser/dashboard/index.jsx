@@ -8,8 +8,11 @@ import {
   MDBIcon,
   MDBRow,
 } from "mdbreact";
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+  const { token, school, auth, role } = useSelector(({ auth }) => auth);
+  console.log("role", role);
   return (
     <MDBContainer fluid>
       <div className="mb-5">

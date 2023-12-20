@@ -1,5 +1,8 @@
 [
   {
+    "_id": {
+      "$oid": "657e550d52aff9126db4e905"
+    },
     "schools": {
       "$oid": "657cfa440a085fe7bde80d0d"
     },

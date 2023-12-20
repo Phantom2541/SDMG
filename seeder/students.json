@@ -1,0 +1,65 @@
+[
+  {
+    "_id": {
+      "$oid": "657e550d52aff9126db4e905"
+    },
+    "school": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "user": {
+      "$oid": "65757e0f0f11d7046355ae9e"
+    },
+    "section": {
+      "$oid": "657e550d52aff9126db4e905"
+    },
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "657e550d52aff9126db4e906"
+    },
+    "school": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "user": {
+      "$oid": "65757e0f0f11d7046355ae9f"
+    },
+    "section": {
+      "$oid": "657e550d52aff9126db4e905"
+    },
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "657e550d52aff9126db4e907"
+    },
+    "school": {
+      "$oid": "657cfa440a085fe7bde80d0d"
+    },
+    "user": {
+      "$oid": "65757e0f0f11d7046355ae9g"
+    },
+    "section": {
+      "$oid": "657e550d52aff9126db4e905"
+    },
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.692Z"
+    },
+    "__v": 0
+  }
+]

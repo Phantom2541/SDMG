@@ -22,9 +22,6 @@
     "_id": {
       "$oid": "65754ce8475d729b64f0a30c"
     },
-    "school": {
-      "$oid": "657cfa440a085fe7bde80d0d"
-    },
     "email": "BenedictEarle@gmail.com",
     "password": "$2a$10$0miJCiwA4w7FgGL0TboMLOIgWgMDaOLLDpDH9J7FjCmpH6pmq4wry",
     "fullName": {
@@ -83,9 +80,6 @@
     "_id": {
       "$oid": "65757e0f0f11d7046355ae9c"
     },
-    "school": {
-      "$oid": "657cfa440a085fe7bde80d0d"
-    },
     "email": "coordinator@gmail.com",
     "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
     "fullName": {
@@ -119,13 +113,9 @@
     },
     "__v": 0
   },
-
   {
     "_id": {
       "$oid": "65757e0f0f11d7046355ae9d"
-    },
-    "school": {
-      "$oid": "657cfa440a085fe7bde80d0d"
     },
     "email": "adviser@gmail.com",
     "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
@@ -148,6 +138,112 @@
       }
     },
     "dob": "1999-10-12T08:14:00.000Z",
+    "mobile": "9510707654",
+    "isMale": false,
+    "isActive": true,
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "__v": 0
+  },
+
+  {
+    "_id": {
+      "$oid": "65757e0f0f11d7046355ae9e"
+    },
+    "email": "student1@gmail.com",
+    "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
+    "fullName": {
+      "fname": "ANGEL",
+      "lname": "PAJARILLAGA"
+    },
+    "address": {
+      "isSame": true,
+      "current": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      },
+      "permanent": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      }
+    },
+    "dob": "1999-10-12",
+    "mobile": "9510707654",
+    "isMale": false,
+    "isActive": true,
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65757e0f0f11d7046355ae9f"
+    },
+    "email": "student2@gmail.com",
+    "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
+    "fullName": {
+      "fname": "DAN MELUIN",
+      "lname": "PALARIS"
+    },
+    "address": {
+      "isSame": true,
+      "current": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      },
+      "permanent": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      }
+    },
+    "dob": "1999-10-12",
+    "mobile": "9510707654",
+    "isMale": false,
+    "isActive": true,
+    "createdAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-10T08:59:59.578Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65757e0f0f11d7046355ae9g"
+    },
+    "email": "student2@gmail.com",
+    "password": "$2a$10$Io1FcL5H9N6x3lUXta3i.eOn3C0/45KN9Imge2MqylsePdqs6vv3S",
+    "fullName": {
+      "fname": "JOHN RIKO",
+      "lname": "AVILA"
+    },
+    "address": {
+      "isSame": true,
+      "current": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      },
+      "permanent": {
+        "city": "CABANATUAN CITY",
+        "province": "NUEVA ECIJA",
+        "region": "REGION III (CENTRAL LUZON)"
+      }
+    },
+    "dob": "1999-10-12",
     "mobile": "9510707654",
     "isMale": false,
     "isActive": true,

@@ -1,15 +1,21 @@
 const Entity = require("../models/Users"),
   Employments = require("../models/Advisers"),
-  // Sections = require("../models/Resources/Sections"),
+  Sections = require("../models/Resources/Sections"),
   generateToken = require("../config/generateToken"),
   fs = require("fs");
 
 const fetchAccess = async (user) => {
   let access = undefined,
+    section = {},
     credentials = await Employments.findOne({ user }).select("-updatedAt -__v");
+  if (credentials && credentials.position === "ADVISER")
+    section = await Sections.findOne({ adviser: user }).select(
+      "-updatedAt -__v"
+    );
+
   access = credentials ? credentials.access : "STUDENT";
 
-  return { access, credentials };
+  return { access, credentials, section };
 };
 
 exports.login = (req, res) => {

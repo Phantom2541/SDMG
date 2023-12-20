@@ -3,6 +3,7 @@ import { ENDPOINT, axioKit } from "../../utilities";
 
 const name = "auth",
   auth = JSON.parse(localStorage.getItem("auth")) || {},
+  section = JSON.parse(localStorage.getItem("section")) || {},
   role = localStorage.getItem("access"),
   maxPage = Number(localStorage.getItem("maxPage")) || 5,
   token = localStorage.getItem("token") || "",
@@ -17,6 +18,7 @@ const initialState = {
   token,
   email,
   image,
+  section,
   maxPage,
   didLogin: false,
   isSuccess: false,
@@ -81,9 +83,11 @@ export const reduxSlice = createSlice({
       })
       .addCase(LOGIN.fulfilled, (state, action) => {
         const { success, payload } = action.payload,
-          { token, user, access } = payload;
+          { token, user, access, section } = payload;
+        console.log(payload);
         state.token = token;
         state.email = user.email;
+        state.section = section;
         state.auth = user;
         state.role = access;
 

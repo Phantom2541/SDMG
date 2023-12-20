@@ -7,22 +7,22 @@ const modelSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    gradeLvl: {
+    level: {
       type: Number,
       min: 1,
       max: 17,
       required: true,
     },
-    department: {
+    course: {
       type: String,
     },
-    // course: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Courses",
-    // },
     adviser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Advisers",
+      ref: "Users",
+    },
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Schools",
     },
   },
   {

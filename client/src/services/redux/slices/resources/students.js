@@ -105,7 +105,7 @@ export const reduxSlice = createSlice({
   name,
   initialState,
   reducers: {
-    RESET: (state, data) => {
+    RESET: (state) => {
       state.isSuccess = false;
       state.message = "";
     },

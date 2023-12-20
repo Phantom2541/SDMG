@@ -7,6 +7,7 @@ import {
   MDBInput,
   MDBTable,
   MDBView,
+  MDBBtn,
 } from "mdbreact";
 
 export default function Students() {
@@ -44,7 +45,7 @@ export default function Students() {
           cascade
           className="gradient-card-header blue-gradient py-2 mx-4 d-flex justify-content-between align-items-center"
         >
-          <span className="ml-3">List of student</span>
+          <span className="ml-3">Student Population</span>
 
           <form
             id="requirements-inline-search"
@@ -66,8 +67,21 @@ export default function Students() {
                 title="Upload File"
                 htmlFor="uploadExcel"
               >
-                <MDBIcon icon="plus" />
+                <MDBIcon icon="upload" />
               </label>
+              <MDBBtn
+                //   onClick={() => {
+                //     if (!searchKey) return;
+                //     setSearchKey("");
+                //     document.getElementById("faculty-inline-search").reset();
+                //   }}
+                type="button"
+                size="sm"
+                color="success"
+                className="d-inline ml-2 px-2"
+              >
+                <MDBIcon icon="plus" />
+              </MDBBtn>
             </div>
           </form>
         </MDBView>
