@@ -6,12 +6,13 @@
 }
 
 .account-info {
-  flex: 2; /* Makes each child take equal space */
+  flex: 1; /* Makes each child take equal space */
   box-sizing: border-box; /* Ensures padding and border are included in width */
 }
 
 .account-info:nth-child(1) {
   font-size: 2rem;
+  font-weight: bold;
   line-height: 2rem;
   margin-top: 2rem;
   pointer-events: auto;
@@ -20,15 +21,20 @@
 .account-info:nth-child(2) {
   line-height: 2rem;
   margin-top: 2rem;
+  text-align: start;
   color: #9fa6b2;
 }
+.account-info:hover {
+  border-radius: 3px;
+  background-color: rgb(240, 240, 240);
+}
 
-.account-info:nth-child(3) {
+.account-grade {
   color: #54b4d3;
   line-height: 1.5rem;
 }
 
-.account-info:hover {
+.account-grade:hover {
   border-radius: 3px;
   background-color: rgb(240, 240, 240);
 }
