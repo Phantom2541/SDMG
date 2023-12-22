@@ -22,10 +22,10 @@ export default function Students() {
   const [students, setStudents] = useState([]),
     [excel, setExcel] = useState([]),
     [activeId, setActiveId] = useState(-1),
-    { token, section } = useSelector(({ auth }) => auth),
+    { token, section, auth } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ students }) => students),
     dispatch = useDispatch();
-  console.log(section);
+
   useEffect(() => {
     if (token && section != undefined) {
       dispatch(BROWSE({ token, key: { section: section._id } }));
@@ -33,7 +33,7 @@ export default function Students() {
       return () => dispatch(RESET());
     }
   }, [dispatch, token, section]);
-
+  console.log(auth);
   useEffect(() => {
     setStudents(collections);
   }, [collections]);

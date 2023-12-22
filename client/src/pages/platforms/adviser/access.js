@@ -1,5 +1,6 @@
 import Students from "./students";
 import Dashboard from "./dashboard";
+import Affiliated from "./affiliated";
 
 const access = [
   {
@@ -13,6 +14,12 @@ const access = [
     icon: "users",
     path: "/advisory",
     component: Students,
+  },
+  {
+    name: "Affailiated",
+    icon: "users",
+    path: "/affiliated",
+    component: Affiliated,
   },
 ];
 

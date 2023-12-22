@@ -7,7 +7,7 @@ import sections from "./slices/resources/sections";
 import adviser from "./slices/adviser";
 import courses from "./slices/resources/courses";
 import students from "./slices/resources/students";
-
+import affiliated from "./slices/affiliated";
 const store = configureStore({
   reducer: {
     schools,
@@ -18,6 +18,7 @@ const store = configureStore({
     violations,
     sections,
     courses,
+    affiliated,
   },
 });
 
