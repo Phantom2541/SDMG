@@ -42,7 +42,7 @@ exports.save = (req, res) => {
 };
 
 exports.coordinator = (_, res) => {
-  Advisers.find({ position: "COORDINATOR" })
+  Advisers.find({ position: "COORDINATOR", status: "approved" })
     .populate({ path: "user" })
     .then((payload) => {
       const coordinator = payload.map((p) => p.user);
