@@ -56,6 +56,7 @@ exports.browse = (req, res) => {
 };
 
 exports.update = (req, res) => {
+  // gawa ni darrel
   Entity.findOneAndUpdate({ user: req.body.adviser }, req.body, {
     new: true,
   })
