@@ -23,15 +23,26 @@ import AddressSelect from "../../../../components/addressSelect";
 // declare your expected items
 const _form = {
   name: "",
+  id: "",
+  abbreviation: "",
+  address: {
+    region: "REGION III (CENTRAL LUZON)",
+    province: "NUEVA ECIJA",
+    city: "CABANATUAN CITY",
+    barangay: undefined,
+    street: "",
+    zip: "",
+  },
 };
 
 export default function Modal({ show, toggle, selected, willCreate }) {
   const { isLoading } = useSelector(({ schools }) => schools),
     { token } = useSelector(({ auth }) => auth),
     [form, setForm] = useState(_form),
-    [address, setAddress] = useState(_form),
     { addToast } = useToasts(),
     dispatch = useDispatch();
+
+  const [checkedItems, setCheckedItems] = useState([]);
 
   const handleUpdate = () => {
     toggle();
@@ -53,15 +64,18 @@ export default function Modal({ show, toggle, selected, willCreate }) {
   };
 
   const handleCreate = () => {
+    toggle();
+
+    const category = Object.entries(checkedItems)
+      .filter(([_, value]) => value === true)
+      .map((entrty) => entrty[0]);
     dispatch(
       SAVE({
-        data: form,
+        data: { ...form, category },
         token,
       })
     );
-
     setForm(_form);
-    toggle();
   };
 
   const handleSubmit = (e) => {
@@ -80,11 +94,9 @@ export default function Modal({ show, toggle, selected, willCreate }) {
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
   // State to manage the checked status of multiple checkboxes
-  const [checkedItems, setCheckedItems] = useState({});
 
   // Function to handle checkbox change
   const handleCheckboxChange = (itemName) => {
-    console.log(itemName);
     setCheckedItems((prevCheckedItems) => {
       console.log("collection", prevCheckedItems);
       return {
@@ -92,9 +104,8 @@ export default function Modal({ show, toggle, selected, willCreate }) {
         [itemName]: !prevCheckedItems[itemName],
       };
     });
-
-    console.log(checkedItems);
   };
+
   return (
     <MDBModal
       size="xl"
@@ -264,12 +275,18 @@ export default function Modal({ show, toggle, selected, willCreate }) {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-
           <AddressSelect
+            label="Campus Area"
+            address={form["address"]}
+            handleChange={(_, address) => handleChange("address", address)}
+          />
+          {/* <AddressSelect
             label="Campus Address"
             address={address}
-            handleChange={(_, value) => setAddress(value)}
-          />
+            handleChange={(_, value) => {
+              console.log(value);
+            }}
+          /> */}
 
           <div className="text-center mb-1-half">
             <MDBBtn

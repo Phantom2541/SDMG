@@ -5,6 +5,7 @@ const name = "resources/schools";
 
 const initialState = {
   collections: [],
+  coordinators: [],
   showModal: false,
   isSuccess: false,
   isLoading: false,
@@ -16,6 +17,24 @@ export const BROWSE = createAsyncThunk(
   ({ token }, thunkAPI) => {
     try {
       return axioKit.universal(`${name}/browse`, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const COORDINATOR = createAsyncThunk(
+  `${name}/coordinator`,
+  ({ token }, thunkAPI) => {
+    try {
+      return axioKit.universal(`${name}/coordinator`, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -173,6 +192,22 @@ export const reduxSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(BROWSE.rejected, (state, action) => {
+        const { error } = action;
+        state.message = error.message;
+        state.isLoading = false;
+      })
+
+      .addCase(COORDINATOR.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+        state.message = "";
+      })
+      .addCase(COORDINATOR.fulfilled, (state, action) => {
+        const { payload } = action.payload;
+        state.coordinators = payload;
+        state.isLoading = false;
+      })
+      .addCase(COORDINATOR.rejected, (state, action) => {
         const { error } = action;
         state.message = error.message;
         state.isLoading = false;

@@ -4,6 +4,7 @@ const router = require("express").Router(),
     save,
     update,
     destroy,
+    coordinator,
   } = require("../../controllers/Resources/Schools"),
   { validate } = require("../../middleware/jwt");
 
@@ -11,6 +12,7 @@ router
   .get("/browse", validate, browse)
   .post("/save", validate, save)
   .put("/update", validate, update)
-  .delete("/destroy", validate, destroy);
+  .delete("/destroy", validate, destroy)
+  .get("/coordinator", validate, coordinator);
 
 module.exports = router;

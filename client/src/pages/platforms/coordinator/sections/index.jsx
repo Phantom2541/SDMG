@@ -22,10 +22,10 @@ export default function Sections() {
   const [sections, setSections] = useState([]),
     [activeId, setActiveId] = useState(-1),
     [show, setShow] = useState(false),
-    { token, school } = useSelector(({ auth }) => auth),
+    { token, school, auth } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ sections }) => sections),
     dispatch = useDispatch();
-
+  console.log(auth);
   useEffect(() => {
     if (token) dispatch(BROWSE({ token, key: { schools: school.school } }));
 

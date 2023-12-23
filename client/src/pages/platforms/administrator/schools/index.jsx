@@ -14,15 +14,20 @@ import {
   BROWSE,
   RESET,
 } from "../../../../services/redux/slices/resources/schools";
+import { useToasts } from "react-toast-notifications";
 import Modal from "./modal";
+import Coordinator from "./coordinator";
 
 export default function Schools() {
   const [schools, setSchools] = useState([]),
     [showModal, setShowModal] = useState(false),
     [willCreate, setWillCreate] = useState(true),
     { token } = useSelector(({ auth }) => auth),
-    { collections } = useSelector(({ schools }) => schools),
-    dispatch = useDispatch();
+    [selected, setSelected] = useState(""),
+    [showCoordinator, setShowCoordinator] = useState(false),
+    { collections, message, isSuccess } = useSelector(({ schools }) => schools),
+    dispatch = useDispatch(),
+    { addToast } = useToasts();
 
   useEffect(() => {
     if (token) dispatch(BROWSE({ token }));
@@ -34,11 +39,26 @@ export default function Schools() {
     setSchools(collections);
   }, [collections]);
 
+  useEffect(() => {
+    console.log(message);
+    if (message) {
+      addToast(message, {
+        appearance: isSuccess ? "success" : "error",
+      });
+    }
+
+    return () => dispatch(RESET());
+  }, [isSuccess, message, addToast, dispatch]);
+
   const toggleModal = (data) => {
     setWillCreate(data);
     setShowModal(!showModal);
   };
 
+  const toggleCoordinator = (data) => {
+    setSelected(data);
+    setShowCoordinator(!showCoordinator);
+  };
   return (
     <>
       <MDBCard narrow>
@@ -125,7 +145,7 @@ export default function Schools() {
                     </td>
                     <td>{category?.join(", ")}</td>
                     <td className="text-uppercase">
-                      {fullName(coordinator.fullName)}
+                      {fullName(coordinator?.fullName) || "None"}
                     </td>
                     <td className="py-2 text-center">
                       <MDBBtnGroup>
@@ -133,11 +153,9 @@ export default function Schools() {
                           title="Settings"
                           color="primary"
                           size="sm"
+                          type="button"
                           rounded
-                          //   onClick={() => {
-                          //     setSelected(school);
-                          //     setShow(true);
-                          //   }}
+                          onClick={() => toggleCoordinator(_id)}
                         >
                           <MDBIcon icon="tag" />
                         </MDBBtn>
@@ -150,7 +168,16 @@ export default function Schools() {
           </MDBTable>
         </MDBCardBody>
       </MDBCard>
-      <Modal show={showModal} toggle={toggleModal} willCreate={willCreate} />
+      {showModal && (
+        <Modal show={showModal} toggle={toggleModal} willCreate={willCreate} />
+      )}
+      {showCoordinator && (
+        <Coordinator
+          show={showCoordinator}
+          toggle={toggleCoordinator}
+          selected={selected}
+        />
+      )}
     </>
   );
 }

@@ -20,6 +20,7 @@ const initialState = {
   image,
   section,
   maxPage,
+  school: {},
   didLogin: false,
   isSuccess: false,
   isLoading: false,
@@ -83,13 +84,14 @@ export const reduxSlice = createSlice({
       })
       .addCase(LOGIN.fulfilled, (state, action) => {
         const { success, payload } = action.payload,
-          { token, user, access, section } = payload;
+          { token, user, access, section, credentials } = payload;
         console.log(payload);
         state.token = token;
         state.email = user.email;
         state.section = section;
         state.auth = user;
         state.role = access;
+        state.school = credentials;
 
         state.message = success;
         state.didLogin = true;

@@ -125,7 +125,7 @@ export default function AddressSelect({
             </>
           ) : (
             <>
-              <label className="mb-0">City/Municipality</label>
+              <label className="mb-0">Baranggay</label>
               <select
                 value={barangay}
                 onChange={(e) => handleAddress("barangay", e.target.value)}
