@@ -17,17 +17,21 @@ import {
   RESET,
 } from "../../../../services/redux/slices/resources/sections";
 import Modal from "./modal";
+import Create from "./create";
 
 export default function Sections() {
   const [sections, setSections] = useState([]),
     [activeId, setActiveId] = useState(-1),
     [show, setShow] = useState(false),
-    { token, school } = useSelector(({ auth }) => auth),
+    [showCreate, setShowCreate] = useState(false),
+    [willCreate, setWillCreate] = useState(false),
+    { token, credentials } = useSelector(({ auth }) => auth),
     { collections } = useSelector(({ sections }) => sections),
     dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) dispatch(BROWSE({ token, key: { schools: school.school } }));
+    if (token)
+      dispatch(BROWSE({ token, key: { schools: credentials?.schools } }));
 
     return () => dispatch(RESET());
   }, [dispatch, token]);
@@ -49,6 +53,12 @@ export default function Sections() {
   const toggle = async () => {
     setShow(!show);
   };
+
+  const toggleCreate = () => {
+    setShowCreate(!showCreate);
+    setWillCreate(true);
+  };
+
   return (
     <>
       <MDBCard narrow>
@@ -85,11 +95,7 @@ export default function Sections() {
                 <MDBIcon icon="search" />
               </MDBBtn>
               <MDBBtn
-                //   onClick={() => {
-                //     if (!searchKey) return;
-                //     setSearchKey("");
-                //     document.getElementById("faculty-inline-search").reset();
-                //   }}
+                onClick={() => toggleCreate(true)}
                 type="button"
                 size="sm"
                 color="success"
@@ -180,6 +186,7 @@ export default function Sections() {
         </MDBCardBody>
       </MDBCard>
       <Modal toggle={toggle} setShow={setShow} show={show} />
+      <Create toggle={toggleCreate} show={showCreate} willCreate={willCreate} />
     </>
   );
 }

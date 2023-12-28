@@ -3,6 +3,7 @@ import { ENDPOINT, axioKit } from "../../utilities";
 
 const name = "auth",
   auth = JSON.parse(localStorage.getItem("auth")) || {},
+  credentials = JSON.parse(localStorage.getItem("credentials")) || {},
   section = JSON.parse(localStorage.getItem("section")) || {},
   role = localStorage.getItem("access"),
   maxPage = Number(localStorage.getItem("maxPage")) || 5,
@@ -15,6 +16,7 @@ const name = "auth",
 const initialState = {
   auth,
   role,
+  credentials,
   token,
   email,
   image,
@@ -90,7 +92,7 @@ export const reduxSlice = createSlice({
         state.section = section;
         state.auth = user;
         state.role = access;
-
+        state.credentials = credentials;
         state.message = success;
         state.didLogin = true;
         state.isLoading = false;

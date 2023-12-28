@@ -14,11 +14,11 @@ exports.browse = (req, res) => {
     .select("-createdAt -updatedAt -__v")
     .populate({
       path: "adviser",
-      select: "user",
-      populate: {
-        path: "user",
-        select: "fullName",
-      },
+      // select: "user",
+      // populate: {
+      //   path: "user",
+      //   select: "fullName",
+      // },
     })
     // .populate({
     //   path: "course",
